@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy - Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        :root {
+            --color-deep-space: #000000;
+            --color-midnight-blue: #15132A;
+            --color-nebula-purple: #6A11CB;
+            --color-cosmic-violet: #00E5FF;
+            --color-bright-purple: #2575FC;
+            --color-starlight-white: #FFFFFF;
+        }
+
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: transparent;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            font-family: "Noto Sans", sans-serif;
+            z-index: 99999;
+            transition: 0.2s ease;
+        }
+
+        .header.scrolled {
+            background: var(--color-deep-space);
+            box-shadow: 2px 2px 10px var(--color-deep-space);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 190px;
+        }
+
+        .menus {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .menus ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menus ul li {
+            list-style: none;
+        }
+
+        .menus ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--color-starlight-white);
+            position: relative;
+        }
+
+        .menus ul li a::after {
+            content: "";
+            background: var(--color-cosmic-violet);
+            height: 2px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            bottom: -5px;
+            transition: 0.3s ease;
+        }
+
+        .menus ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menus ul li a.active::after {
+            width: 100%;
+        }
+
+        .menus ul li a.active {
+            color: var(--color-cosmic-violet);
+        }
+
+        .menu-btn,
+        .close-btn {
+            display: none;
+        }
+
+        .nav-btn {
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+            color: var(--color-deep-space);
+
+            transition: all 0.35s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+
+            box-shadow:
+                0 12px 30px color-mix(in srgb, var(--color-cosmic-violet) 40%, transparent);
+
+            filter: brightness(1.08);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width:780px) {
+
+            .menus {
+                display: none;
+                position: absolute;
+                flex-direction: column;
+                justify-content: flex-start;
+                background: var(--color-deep-space);
+                align-items: flex-start;
+                height: 100vh;
+                top: 0px;
+                left: 0px;
+                width: 70%;
+                padding: 27px 25px;
+                gap: 30px;
+            }
+
+            .menus ul {
+                flex-direction: column;
+            }
+
+            .logo img, .footer-box img {
+                width: 160px;
+            }
+
+            .menu-btn {
+                display: flex;
+                color: var(--color-starlight-white);
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .close-btn {
+                display: none;
+                color: var(--color-starlight-white);
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+
+
+        /* hero seciton*/
+
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            height: 140vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: var(--color-starlight-white);
+        }
+
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            z-index: -2;
+        }
+
+        /* Dark overlay */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: color-mix(in srgb, var(--color-deep-space) 45%, transparent);
+            z-index: -1;
+        }
+
+        .hero-main {
+            margin-top: 100px;
+            padding: 15px;
+        }
+
+        .hero-main>p:first-child {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+            color: var(--color-cosmic-violet);
+        }
+
+
+        .hero-main h1 {
+            font-size: clamp(35px, 5vw, 70px);
+            text-align: center;
+            font-family: "Chelsea Market", cursive;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: 5px;
+            margin-bottom: 20px
+        }
+
+        .hero-main h1 span {
+            color: var(--color-cosmic-violet);
+        }
+
+        .hero-para {
+            width: 100%;
+            max-width: 700px;
+            line-height: 1.9;
+            margin-bottom: 100px;
+            font-size: 18px;
+            word-spacing: 2px;
+        }
+
+        .hero-footer {
+            display: flex;
+            width: 100%;
+            text-align: left;
+            justify-content: center;
+            gap: 70px;
+            padding: 10px 20px;
+        }
+
+        .hero-footer-box::before {
+            content: "";
+            height: 1px;
+            background: color-mix(in srgb, var(--color-starlight-white) 54.1%, transparent);
+            width: 100%;
+            top: -15px;
+            position: absolute;
+        }
+
+        .hero-footer-box {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .hero-footer p {
+            font-size: 10px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            word-spacing: 5px;
+            letter-spacing: 5px;
+            line-height: 1.5;
+            color: var(--color-cosmic-violet);
+        }
+
+        .hero-footer h2 {
+            font-size: 25px;
+
+        }
+
+        @media (max-width:900px) {
+            .hero-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 40px;
+                width: 100%;
+            }
+
+            .hero-footer-box {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-main>p:first-child {
+                font-size: 10px;
+            }
+
+            .hero-para {
+                font-size: 13px;
+            }
+
+        }
+
+        .sec-title {
+            text-align: center;
+            margin-bottom: 48px
+        }
+
+        .sec-title>span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--color-cosmic-violet);
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .sec-title h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-family: "Chelsea Market", cursive;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: var(--color-starlight-white);
+        }
+
+        .sec-title h2 span {
+            color: var(--color-cosmic-violet);
+
+        }
+
+        .sec-title p {
+            color: color-mix(in srgb, var(--color-starlight-white) 60%, transparent);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 14px auto 0;
+            line-height: 1.8
+        }
+
+        /*soloar*/
+        .solar {
+            padding: 80px 40px;
+            background: linear-gradient(180deg, var(--color-deep-space) 0%, var(--color-deep-space) 100%);
+        }
+
+        .planets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .planet-card {
+            height: 280px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            transition: all .4s ease;
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 15%, transparent);
+        }
+
+        .planet-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    color-mix(in srgb, var(--color-deep-space) 95%, transparent) 10%,
+                    color-mix(in srgb, var(--color-deep-space) 45%, transparent) 55%,
+                    transparent 100%);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .overlay h3 {
+            color: var(--color-starlight-white);
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .overlay p {
+            color: color-mix(in srgb, var(--color-starlight-white) 80%, transparent);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .planet-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--color-cosmic-violet);
+            box-shadow: 0 20px 40px color-mix(in srgb, var(--color-cosmic-violet) 25%, transparent);
+        }
+
+        /* 2. Space Missions */
+        .missions {
+            padding: 80px 40px;
+            background: var(--color-deep-space);
+        }
+
+        .missions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .mission-card {
+            display: flex;
+            gap: 18px;
+            background: var(--color-midnight-blue);
+            border: 1px solid var(--color-nebula-purple);
+            border-radius: 14px;
+            padding: 24px;
+            transition: 0.3s;
+        }
+
+        .mission-card:hover {
+            border-color: var(--color-cosmic-violet);
+            background: color-mix(in srgb, var(--color-cosmic-violet) 5%, transparent);
+        }
+
+        .mission-num {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--color-cosmic-violet);
+            opacity: 0.6;
+            min-width: 50px;
+            line-height: 1;
+        }
+
+        .mission-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-starlight-white);
+        }
+
+        .mission-info p {
+            font-size: 13px;
+            color: color-mix(in srgb, var(--color-starlight-white) 50%, transparent);
+            line-height: 1.7;
+        }
+
+        .mission-badge {
+            display: inline-block;
+            font-size: 10px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            background: color-mix(in srgb, var(--color-cosmic-violet) 15%, transparent);
+            color: var(--color-cosmic-violet);
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 30%, transparent)
+        }
+
+
+        /* 4. Gallery */
+        .gallery-sec {
+            padding: 80px 40px;
+            background: var(--color-deep-space);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--color-nebula-purple);
+            transition: all .4s ease;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-card:hover {
+            border-color: var(--color-cosmic-violet);
+            box-shadow: 0 20px 40px color-mix(in srgb, var(--color-cosmic-violet) 15%, transparent);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+
+            background: linear-gradient(transparent 30%,
+                    color-mix(in srgb, var(--color-deep-space) 85%, transparent) 100%);
+
+            transition: .4s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            background: linear-gradient(transparent 10%,
+                    color-mix(in srgb, var(--color-deep-space) 92%, transparent) 100%);
+        }
+
+        .gallery-overlay h3 {
+            color: var(--color-starlight-white);
+            font-size: 20px;
+            margin-bottom: 8px;
+            transform: translateY(20px);
+            transition: .4s ease;
+        }
+
+        .gallery-overlay p {
+            color: color-mix(in srgb, var(--color-starlight-white) 75%, transparent);
+            font-size: 13px;
+            line-height: 1.6;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: .4s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay h3,
+        .gallery-card:hover .gallery-overlay p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* 5. Facts Counter */
+        .facts-sec {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #0a050098, #05080aa6), url("./src/section-bg.webp");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .fact-box {
+            text-align: center;
+            padding: 36px 20px;
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 15%, transparent);
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--color-cosmic-violet) 3%, transparent)
+        }
+
+        .fact-num {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            color: var(--color-cosmic-violet);
+            line-height: 1;
+            margin-bottom: 10px
+        }
+
+        .fact-label {
+            font-size: 13px;
+            color: color-mix(in srgb, var(--color-starlight-white) 55%, transparent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.6
+        }
+
+        /* 6. Newsletter / CTA */
+        .cta-sec {
+            padding: 80px 40px;
+            background: radial-gradient(ellipse at center, var(--color-deep-space) 0%, var(--color-deep-space) 70%);
+            text-align: center
+        }
+
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto
+        }
+
+        .cta-inner .big {
+            font-size: clamp(30px, 5vw, 56px);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--color-starlight-white);
+            font-family: "Chelsea Market", cursive;
+        }
+
+        .cta-inner .big span {
+            color: var(--color-cosmic-violet)
+        }
+
+        .cta-inner p {
+            color: color-mix(in srgb, var(--color-starlight-white) 55%, transparent);
+            font-size: 16px;
+            margin-bottom: 36px;
+            line-height: 1.8
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+            flex-wrap: wrap
+        }
+
+        .cta-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px 20px;
+            background: var(--color-midnight-blue);
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 30%, transparent);
+            border-radius: 10px;
+            color: var(--color-starlight-white);
+            font-size: 15px;
+            outline: none
+        }
+
+        .cta-form input::placeholder {
+            color: color-mix(in srgb, var(--color-starlight-white) 35%, transparent)
+        }
+
+        .cta-btn {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-deep-space);
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap
+        }
+
+        .cta-btn:hover {
+            filter: brightness(1.12);
+            transform: translateY(-2px)
+        }
+
+        @media(max-width:600px) {
+
+            .solar,
+            .missions,
+            .gallery-sec,
+            .facts-sec,
+            .cta-sec {
+                padding: 60px 20px
+            }
+
+            .stars-row {
+                flex-direction: column
+            }
+
+            .star-type {
+                border-right: none;
+                border-bottom: 1px solid color-mix(in srgb, var(--color-starlight-white) 6%, transparent)
+            }
+
+            .star-type:last-child {
+                border-bottom: none
+            }
+
+            .cta-form {
+                flex-direction: column
+            }
+
+            .cta-form input,
+            .cta-btn {
+                width: 100%
+            }
+        }
+
+
+        /* Footer */
+
+        .footer {
+            width: 100%;
+            background: linear-gradient(125deg, color-mix(in srgb, var(--color-deep-space) 66.4%, transparent), color-mix(in srgb, var(--color-deep-space) 80.1%, transparent)), url(./src/footer-bg.webp);
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            color: var(--color-starlight-white);
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 50px;
+            gap: 40px;
+        }
+
+        .footer-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-box img {
+            width: 190px;
+        }
+
+        .footer-box h2 {
+            font-size: 30px;
+        }
+
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+
+        .footer-link a {
+            color: var(--color-starlight-white);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-link a:hover {
+            color: var(--color-cosmic-violet);
+        }
+
+
+
+        .footer-box:first-child p {
+            max-width: 300px;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .footer-box:last-child p {
+            font-size: 16px;
+        }
+
+        .login-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: color-mix(in srgb, var(--color-midnight-blue) 30.8%, transparent);
+            backdrop-filter: blur(10px);
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: 0.5s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--color-cosmic-violet);
+            color: var(--color-deep-space);
+            transform: translateY(-4px);
+        }
+
+        .footer-email {
+            background: transparent;
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 30%, transparent);
+            font-size: 14px;
+            padding: 15px 20px;
+            width: 100%;
+            border-radius: 10px;
+            color: var(--color-starlight-white);
+        }
+
+        .footer-btn {
+            font-size: 14px;
+            padding: 15px 20px;
+            width: 100%;
+            border: none;
+            font-weight: bold;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+        }
+
+        .footer-btn:hover {
+            box-shadow: 0 7px 30px color-mix(in srgb, var(--color-cosmic-violet) 40%, transparent);
+            filter: brightness(1.08);
+        }
+
+
+        .footer-footer {
+            display: flex;
+            justify-content: space-around;
+            padding-block: 40px;
+            color: color-mix(in srgb, var(--color-starlight-white) 52.7%, transparent);
+            ;
+        }
+
+        .footer-footer p {
+            font-size: 15px;
+        }
+
+        .policy a {
+            color: color-mix(in srgb, var(--color-starlight-white) 52.7%, transparent);
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 40px;
+        }
+
+        .policy a:hover {
+            color: var(--color-cosmic-violet);
+        }
+
+        .footer-line {
+            margin-inline: 30px;
+            opacity: 0.5;
+        }
+
+        .contact a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact span {
+            font-size: 15px;
+        }
+
+        @media (max-width:550px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                justify-content: center;
+            }
+
+            .footer-box:first-child p {
+                text-align: center;
+            }
+
+            .footer-box {
+                align-items: center;
+            }
+
+        }
+
+        @media (max-width:650px) {
+            .footer-footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .policy {
+                justify-content: space-around;
+            }
+
+            .policy a {
+                margin-inline: 15px;
+                font-size: 13px;
+            }
+
+            .footer-footer p {
+                font-size: 13px;
+            }
+
+            .footer-link a {
+                font-size: 13px;
+            }
+
+            .footer-box h2 {
+                font-size: 23px;
+            }
+
+            .footer-box:first-child p {
+                font-size: 13px;
+                line-height: 1.9;
+            }
+
+            .footer-box:last-child p {
+                font-size: 13px;
+                text-align: center;
+            }
+
+            .footer-email {
+                font-size: 12px;
+            }
+
+            .footer-btn {
+                font-size: 12px;
+            }
+
+            .footer-box img {
+                width: 150px;
+            }
+
+            .contact span {
+                font-size: 13px;
+            }
+
+        }
+
+        /**/
+
+        .space-slider-section {
+            padding: 100px 20px;
+            background: var(--color-deep-space);
+        }
+
+        .slider-container {
+            max-width: 1400px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 20px;
+            transition: transform .8s ease;
+        }
+
+        .slide-card {
+            min-width: calc((100% - 40px)/3);
+            height: 650px;
+
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+
+            cursor: pointer;
+        }
+
+        .slide-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(transparent 45%,
+                    color-mix(in srgb, var(--color-deep-space) 85%, transparent));
+        }
+
+        .slide-content {
+            position: absolute;
+            left: 30px;
+            bottom: 30px;
+            z-index: 5;
+        }
+
+        .slide-content h3 {
+            color: var(--color-starlight-white);
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .slide-content button {
+            width: 45px;
+            height: 45px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: var(--color-cosmic-violet);
+            color: var(--color-starlight-white);
+
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-midnight-blue);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--color-starlight-white);
+        }
+
+        @media(max-width:900px) {
+
+            .slide-card {
+                min-width: 100%;
+                height: 500px;
+            }
+        }
+
+
+        /* animation */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-zoom {
+            opacity: 0;
+            transform: scale(.85);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-zoom.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+
+<body>
+
+    <section class="header">
+
+        <div class="logo">
+            <a href="index.html"><img src="./src/logo (4) (1).webp" alt="company Logo"></a>
+        </div>
+
+        <nav class="menus">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pages.html">Service</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+           <a href="login.html"><button class="nav-btn">Login</button></a> 
+        </nav>
+
+        <div class="menu-btn">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+
+        <div class="close-btn">
+            <span class="material-symbols-outlined">close</span>
+        </div>
+
+    </section>
+
+    <section class="hero-section">
+
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="./src/home-bg-video1.mp4" type="video/mp4">
+        </video>
+
+
+        <div class="hero-main">
+            <p>Active Mission</p>
+            <h1>Humanity's <br> <span>Journey Into </span> <br> space</h1>
+
+            <p class="hero-para">We Are Dedicated to advancing Humanity by expoloring the
+                cosmos through groundbreaking speace missions, culting
+                - edge research , innovative technologies</p>
+        </div>
+
+        <div class="hero-footer">
+
+            <div class="hero-footer-box">
+                <p>Night sky challenge </p>
+                <h2>May Object List</h2>
+            </div>
+
+            <div class="hero-footer-box">
+                <p>New e - boox</p>
+                <h2>Orbit Science</h2>
+            </div>
+
+            <div class="hero-footer-box">
+                <p>Onine Activities</p>
+                <h2>Hearing Orbit</h2>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- 1. Solar System Planets -->
+    <section class="solar">
+
+        <div class="sec-title reveal">
+            <span>Our Solar System</span>
+            <h2>Planets of the<br> <span>Milky Way</span></h2>
+            <p>From the scorching Mercury to the icy Neptune — explore every planet in our cosmic neighborhood.</p>
+        </div>
+
+        <div class="planets-grid">
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/1.webp')">
+                <div class="overlay">
+                    <h3>Mercury</h3>
+                    <p>Closest to the Sun. Surface temp reaches 430°C</p>
+                </div>
+            </div>
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/2.webp')">
+                <div class="overlay">
+                    <h3>Venus</h3>
+                    <p>Hottest planet. Dense CO₂ atmosphere</p>
+                </div>
+            </div>
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/3.webp')">
+                <div class="overlay">
+                    <h3>Earth</h3>
+                    <p>Our home. Only known planet with life</p>
+                </div>
+            </div>
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/4.webp')">
+                <div class="overlay">
+                    <h3>Mars</h3>
+                    <p>The Red Planet. Home to Olympus Mons</p>
+                </div>
+            </div>
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/5.webp')">
+                <div class="overlay">
+                    <h3>Jupiter</h3>
+                    <p>Largest planet with the Great Red Spot</p>
+                </div>
+            </div>
+
+            <div class="planet-card reveal-zoom" style="background-image:url('./src/6.webp')">
+                <div class="overlay">
+                    <h3>Saturn</h3>
+                    <p>Famous for its stunning ring system</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 2. Space Missions -->
+    <section class="missions">
+        <div class="sec-title">
+            <span>Historic Achievements</span>
+            <h2>Legendary Space<br><span>Missions</span></h2>
+            <p>Milestones that defined humanity's quest to conquer the cosmos.</p>
+        </div>
+        <div class="missions-list">
+            <div class="mission-card reveal-left">
+                <div class="mission-num">01</div>
+                <div class="mission-info">
+                    <h3>Apollo 11</h3>
+                    <p>First humans to walk on the Moon. Neil Armstrong's historic step changed the world forever.</p>
+                    <span class="mission-badge">July 1969</span>
+                </div>
+            </div>
+            <div class="mission-card reveal-left">
+                <div class="mission-num">02</div>
+                <div class="mission-info">
+                    <h3>Voyager 1</h3>
+                    <p>Launched in 1977, it's now the farthest human-made object, in interstellar space.</p><span
+                        class="mission-badge">Active</span>
+                </div>
+            </div>
+            <div class="mission-card reveal-left">
+                <div class="mission-num">03</div>
+                <div class="mission-info">
+                    <h3>Hubble Telescope</h3>
+                    <p>Revolutionized our understanding of the universe with stunning deep-field images.</p><span
+                        class="mission-badge">Since 1990</span>
+                </div>
+            </div>
+            <div class="mission-card reveal-left">
+                <div class="mission-num">04</div>
+                <div class="mission-info">
+                    <h3>Mars Perseverance</h3>
+                    <p>NASA's rover searching for signs of ancient microbial life on the Martian surface.</p><span
+                        class="mission-badge">Active 2021</span>
+                </div>
+            </div>
+            <div class="mission-card reveal-left">
+                <div class="mission-num">05</div>
+                <div class="mission-info">
+                    <h3>James Webb Telescope</h3>
+                    <p>The most powerful space telescope, peering back 13.5 billion years to the early universe.</p>
+                    <span class="mission-badge">Active 2022</span>
+                </div>
+            </div>
+            <div class="mission-card reveal-left">
+                <div class="mission-num">06</div>
+                <div class="mission-info">
+                    <h3>Artemis Program</h3>
+                    <p>NASA's mission to return humans to the Moon and prepare for crewed Mars missions.</p><span
+                        class="mission-badge">Ongoing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Gallery -->
+    <section class="gallery-sec">
+
+        <div class="sec-title">
+            <span>Visual Universe</span>
+            <h2>Cosmos <span>Gallery</span></h2>
+            <p>Breathtaking wonders captured from the depths of space.</p>
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home1.webp" alt="Andromeda Galaxy">
+                <div class="gallery-overlay">
+                    <h3>Andromeda Galaxy</h3>
+                    <p>2.5 million light-years away</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home2.webp" alt="Crab Nebula">
+                <div class="gallery-overlay">
+                    <h3>Crab Nebula</h3>
+                    <p>Supernova remnant in Taurus</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home3.webp" alt="Saturn Rings">
+                <div class="gallery-overlay">
+                    <h3>Saturn's Rings</h3>
+                    <p>Billions of icy particles</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home4.webp" alt="Solar Flare">
+                <div class="gallery-overlay">
+                    <h3>Solar Flare</h3>
+                    <p>Massive energy bursts from the Sun</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home5.webp" alt="Aurora Borealis">
+                <div class="gallery-overlay">
+                    <h3>Aurora Borealis</h3>
+                    <p>Earth's dazzling light display</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home6.webp" alt="Deep Field View">
+                <div class="gallery-overlay">
+                    <h3>Deep Field View</h3>
+                    <p>Thousands of galaxies in one frame</p>
+                </div>
+            </div>
+
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home7.webp" alt="Milky Way Core">
+                <div class="gallery-overlay">
+                    <h3>Milky Way Core</h3>
+                    <p>The glowing heart of our home galaxy</p>
+                </div>
+            </div>
+            <div class="gallery-card reveal-zoom">
+                <img src="./src/home8.webp" alt="Eagle Nebula">
+                <div class="gallery-overlay">
+                    <h3>Eagle Nebula</h3>
+                    <p>Home of the famous Pillars of Creation</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 5. Facts Counter -->
+    <section class="facts-sec">
+        <div class="sec-title">
+            <span>By The Numbers</span>
+            <h2>Universe at a <span>Glance</span></h2>
+            <p>Mind-bending numbers that reveal the true scale of our cosmos.</p>
+        </div>
+        <div class="facts-grid">
+            <div class="fact-box reveal">
+                <div class="fact-num" id="c1">0</div>
+                <div class="fact-label">Galaxies in the Observable Universe</div>
+            </div>
+            <div class="fact-box reveal">
+                <div class="fact-num" id="c2">0</div>
+                <div class="fact-label">Light-years across the Universe</div>
+            </div>
+            <div class="fact-box reveal">
+                <div class="fact-num" id="c3">0</div>
+                <div class="fact-label">Stars in the Milky Way</div>
+            </div>
+            <div class="fact-box reveal">
+                <div class="fact-num" id="c4">0</div>
+                <div class="fact-label">Exoplanets Discovered</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- seciton 5 -->
+
+    <section class="space-slider-section">
+
+        <div class="slider-container">
+
+            <div class="slider-track">
+
+                <div class="slide-card reveal-right">
+                    <img src="./src/home9.webp" alt="">
+                    <div class="slide-content">
+                        <h3>Mars Mission</h3>
+                        <button class="errorpage"><span class="material-symbols-outlined">
+                                arrow_forward
+                            </span></button>
+                    </div>
+                </div>
+
+                <div class="slide-card reveal-right">
+                    <img src="./src/home10.webp" alt="">
+                    <div class="slide-content">
+                        <h3>Space Explorer</h3>
+                        <button class="errorpage"><span class="material-symbols-outlined">
+                                arrow_forward
+                            </span></button>
+                    </div>
+                </div>
+
+                <div class="slide-card reveal-right">
+                    <img src="./src/home11.webp" alt="">
+                    <div class="slide-content">
+                        <h3>Galaxy Discovery</h3>
+                        <button class="errorpage"><span class="material-symbols-outlined">
+                                arrow_forward
+                            </span></button>
+                    </div>
+                </div>
+
+                <div class="slide-card reveal-right">
+                    <img src="./src/home12.webp" alt="">
+                    <div class="slide-content">
+                        <h3>Deep Space</h3>
+                        <button class="errorpage"><span class="material-symbols-outlined">
+                                arrow_forward
+                            </span></button>
+                    </div>
+                </div>
+
+                <div class="slide-card reveal-right">
+                    <img src="./src/home13.webp" alt="">
+                    <div class="slide-content">
+                        <h3>Cosmic Horizon</h3>
+                        <button class="errorpage"><span class="material-symbols-outlined">
+                                arrow_forward
+                            </span></button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="dots"></div>
+
+    </section>
+
+    <!-- 6. CTA / Newsletter -->
+    <section class="cta-sec">
+        <div class="cta-inner reveal">
+            <div class="big">Explore the <span>Infinite</span><br>Universe with Us</div>
+            <p>Join thousands of stargazers, astronomers, and space enthusiasts. Get weekly cosmic updates, mission
+                news, and sky events in your inbox.</p>
+            <form class="cta-form" id="ctaForm">
+                <input type="email" id="ctaEmail" placeholder="Enter your email address">
+                <button type="submit" class="cta-btn">Join Now</button>
+            </form>
+        </div>
+    </section>
+
+
+    <section class="footer">
+        <div class="footer-main">
+            <div class="footer-box">
+                <a href="index.html"><img src="./src/logo (4) (1).webp" alt="company  errorpage"></a>
+                <p>We Explore the universe with advanced technology, driving innovation and discovery to benefit all
+                    humanity.</p>
+                <div class="login-socials">
+                    <div class="social-icon errorpage"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-x-twitter"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-youtube"></i></div>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Company</h2>
+                <div class="footer-link">
+                    <a href="about.html">About</a>
+                    <a href="pages.html">Service</a>
+                    <a href="events.html">Event</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Address</h2>
+                <div class="footer-link contact">
+                    <a href="404.html"><span class="material-symbols-outlined">
+                            mail
+                        </span>space@gmail.com</a>
+                    <a href="404.html"><span class="material-symbols-outlined">
+                            location_on
+                        </span>Chennai, India</a>
+                    <a href="404.html"><span class="material-symbols-outlined">
+                            call
+                        </span>+91 1234567890</a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Newsletter</h2>
+                <div class="footer-link">
+                    <p>Stay Informed with Stackly</p>
+                    <input type="email" class="footer-email" placeholder="Please Subscribe">
+                    <button class="footer-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-line">
+
+        <div class="footer-footer">
+            <p>@ 2026 Your Stackly. All Rights Reserved</p>
+            <div class="policy">
+                <a href="404.html">Privacy Policy</a>
+                <a href="404.html">Terms of Use</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        //hand burgar menu
+
+        let menubtn = document.querySelector(".menu-btn")
+        let menus = document.querySelector(".menus")
+        let closebtn = document.querySelector(".close-btn")
+
+        menubtn.addEventListener("click", () => {
+            menubtn.style.display = "none"
+            closebtn.style.display = "block"
+            menus.style.display = "flex"
+        })
+
+        closebtn.addEventListener("click", () => {
+            menubtn.style.display = "block"
+            closebtn.style.display = "none"
+            menus.style.display = "none"
+        })
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 780) {
+                menubtn.style.display = "none"
+                closebtn.style.display = "none"
+                menus.style.display = "flex"
+            }
+            else {
+                menubtn.style.display = "block"
+                closebtn.style.display = "none"
+                menus.style.display = "none"
+            }
+
+        })
+
+        // nav bar scroll 
+
+        let navbar = document.querySelector(".header")
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled")
+            }
+            else {
+                navbar.classList.remove("scrolled")
+            }
+        })
+
+        // other sections
+
+        const targets = [{ id: "c1", val: 2, suffix: "T+" }, { id: "c2", val: 93, suffix: "B" }, { id: "c3", val: 400, suffix: "B+" }, { id: "c4", val: 5500, suffix: "+" }];
+        function animCount(el, target, suffix, dur = 1800) {
+            let start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                let p = Math.min((ts - start) / dur, 1);
+                let ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(ease * target) + (p === 1 ? suffix : "");
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    targets.forEach(t => {
+                        let el = document.getElementById(t.id);
+                        if (el && el.textContent === "0") animCount(el, t.val, t.suffix);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelector(".facts-sec") && obs.observe(document.querySelector(".facts-sec"));
+
+        //secton 5
+
+        const track = document.querySelector(".slider-track");
+        const cards = document.querySelectorAll(".slide-card");
+        const dotsContainer = document.querySelector(".dots");
+
+        let current = 0;
+
+        cards.forEach((_, index) => {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+
+            if (index === 0) {
+                dot.classList.add("active");
+            }
+
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll(".dot");
+
+        function updateSlider() {
+
+            const cardWidth =
+                cards[0].offsetWidth + 20;
+
+            track.style.transform =
+                `translateX(-${current * cardWidth}px)`;
+
+            dots.forEach(dot =>
+                dot.classList.remove("active")
+            );
+
+            dots[current].classList.add("active");
+        }
+
+        setInterval(() => {
+
+            current++;
+
+            if (current > cards.length - 3) {
+                current = 0;
+            }
+
+            updateSlider();
+
+        }, 2000);
+
+
+        // join now
+        const ctaForm = document.getElementById("ctaForm");
+        const ctaEmail = document.getElementById("ctaEmail");
+
+        ctaForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = ctaEmail.value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === "") {
+                alert("Please enter your email address");
+                ctaEmail.focus();
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                ctaEmail.focus();
+                return;
+            }
+
+            alert("Thank you for joining!");
+
+            ctaForm.reset();
+        });
+
+        //footer validation
+
+        const footerEmail = document.querySelector(".footer-email");
+        const footerBtn = document.querySelector(".footer-btn");
+
+        footerBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const email = footerEmail.value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === "") {
+                alert("Please enter your email address");
+                footerEmail.focus();
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                footerEmail.focus();
+                return;
+            }
+
+            alert("Subscription successful!");
+            footerEmail.value = "";
+        });
+
+
+        // Scroll Reveal Animation
+
+        const revealElements = document.querySelectorAll(
+            ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
+        );
+
+        const revealObserver = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+
+            });
+
+        }, {
+            threshold: 0.15
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+                //error page
+
+        document.querySelectorAll(".errorpage").forEach(element => {
+
+    element.style.cursor = "pointer";
+
+    element.addEventListener("click", () => {
+        window.location.href = "404.html";
+    });
+
+});
+    </script>
+</body>
+
+
+</html>

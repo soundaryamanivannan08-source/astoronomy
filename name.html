@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Images</title>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <h2>Paste HTML Here</h2>
+    <textarea id="html-input" rows="20" cols="100" placeholder="Paste your HTML code with images here"></textarea>
+    <br>
+    <button onclick="downloadImages()">Download All Images</button>
+ 
+    <script>
+        function downloadImages() {
+            const htmlContent = document.getElementById('html-input').value;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            const imageUrls = Array.from(doc.querySelectorAll('img')).map(img => img.src);
+ 
+            const zip = new JSZip();
+ 
+            let count = 0;
+            imageUrls.forEach((url, index) => {
+                fetch(url)
+                    .then(resp => resp.blob())
+                    .then(blob => {
+                        zip.file(`image${index + 1}.jpg`, blob);
+                        count++;
+                        if (count === imageUrls.length) {
+                            zip.generateAsync({ type: "blob" })
+                                .then(content => {
+                                    saveAs(content, 'images.zip');
+                                });
+                        }
+                    })
+                    .catch(err => console.error('Error fetching image:', err));
+            });
+        }
+    </script>
+</body>
+</html>

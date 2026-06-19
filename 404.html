@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Lost In Space</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+
+        :root {
+            --color-deep-space: #000000;
+            --color-midnight-blue: #15132A;
+            --color-nebula-purple: #6A11CB;
+            --color-cosmic-violet: #00E5FF;
+            --color-bright-purple: #2575FC;
+            --color-starlight-white: #FFFFFF;
+        }
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top,#ffb62d33,transparent 40%),
+    radial-gradient(circle at bottom,#ff880022,transparent 40%),
+    #050505;
+    overflow:hidden;
+    position:relative;
+    padding: 20px 10px;
+}
+
+/* Stars */
+body::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+    radial-gradient(var(--color-starlight-white) 1px, transparent 1px),
+    radial-gradient(var(--color-starlight-white) 1px, transparent 1px),
+    radial-gradient(var(--color-starlight-white) 1px, transparent 1px);
+    background-size:120px 120px,180px 180px,250px 250px;
+    background-position:0 0,50px 60px,120px 30px;
+    opacity:.4;
+}
+
+.astronaut{
+    font-size:170px;
+    color:var(--color-midnight-blue);
+    animation:float 4s ease-in-out infinite;
+    filter:drop-shadow(0 10px 20px color-mix(in srgb, var(--color-deep-space) 25%, transparent));
+}
+
+.astronaut i{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    background:color-mix(in srgb, var(--color-deep-space) 75%, transparent);
+    backdrop-filter:blur(20px);
+    border: 1px solid var(--color-nebula-purple);
+    border-radius:30px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    box-shadow:0 20px 60px color-mix(in srgb, var(--color-deep-space) 60%, transparent);
+    z-index:2;
+}
+
+.left{
+    background:linear-gradient(180deg,#ffb62d,#ff9900);
+    padding:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.astronaut{
+    font-size:170px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-20px)}
+}
+
+.right{
+    padding:60px;
+    color:var(--color-starlight-white);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.error{
+    font-size:120px;
+    font-weight:800;
+    color:#ffb62d;
+    line-height:1;
+    text-shadow:0 0 25px rgba(255,182,45,.6);
+}
+
+h1{
+    font-size:42px;
+    margin:10px 0;
+}
+
+p{
+    color:#b8b8b8;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary{
+    background:#ffb62d;
+    color:var(--color-deep-space);
+}
+
+.primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(255,182,45,.4);
+}
+
+.secondary{
+    border:1px solid #ffb62d;
+    color:#ffb62d;
+}
+
+.secondary:hover{
+    background:#ffb62d;
+    color:var(--color-deep-space);
+}
+
+.planet{
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background: var(--color-midnight-blue);
+    top:30px;
+    right:30px;
+}
+
+.planet::before{
+    content:'';
+    position:absolute;
+    width:170px;
+    height:30px;
+    border: 4px solid var(--color-nebula-purple);
+    border-radius:50%;
+    top:45px;
+    left:-25px;
+}
+
+@media(max-width:900px){
+
+    .container{
+        grid-template-columns:1fr;
+    }
+
+    .left{
+        padding:40px;
+    }
+
+    .astronaut{
+        font-size:120px;
+    }
+
+    .right{
+        padding:40px 25px;
+        text-align:center;
+    }
+
+    .error{
+        font-size:80px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+}
+
+@media(max-width:480px){
+
+    .error{
+        font-size:65px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    p{
+        font-size:14px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <div class="planet"></div>
+       <div class="astronaut">
+  <i class="fa-solid fa-rocket"></i>
+</div>
+    </div>
+
+    <div class="right">
+        <div class="error">404</div>
+
+        <h1>Lost In Space</h1>
+
+        <p>
+            Oops! The page you're looking for has drifted beyond our galaxy.
+            Let's navigate you back to safety and continue exploring the universe.
+        </p>
+
+        <div class="buttons">
+            <a href="index.html" class="btn primary">Back to Home</a>
+            <a href="javascript:history.back()" class="btn secondary">Back to Previous Section</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

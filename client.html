@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmix Space Observatory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <style>
+
+        :root {
+            --color-deep-space: #000000;
+            --color-midnight-blue: #15132A;
+            --color-nebula-purple: #6A11CB;
+            --color-cosmic-violet: #00E5FF;
+            --color-bright-purple: #2575FC;
+            --color-starlight-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #060b14;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #e2e8f0
+        }
+
+        .sidebar {
+            position: fixed;
+            height: 100vh;
+            width: 260px;
+            background: linear-gradient(180deg, #0a1628, #050c1a);
+            border-right: 1px solid color-mix(in srgb, var(--color-starlight-white) 7%, transparent);
+            padding: 20px;
+            transition: .3s;
+            flex-shrink: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-cosmic-violet);
+            letter-spacing: 2px
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: #94a3b8;
+            letter-spacing: 3px
+        }
+
+        .close-btn {
+            display: none;
+            font-size: 22px;
+            color: var(--color-cosmic-violet);
+            cursor: pointer
+        }
+
+        .menu {
+            list-style: none
+        }
+
+        .menu li {
+            margin-bottom: 8px
+        }
+
+        .menu li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #94a3b8;
+            transition: .3s;
+            font-size: 14px;
+            cursor: pointer
+        }
+
+        .menu li a:hover,
+        .menu li.active a {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--color-cosmic-violet);
+            font-weight: 600;
+            box-shadow: 0 8px 20px color-mix(in srgb, var(--color-deep-space) 30%, transparent)
+        }
+
+        .main {
+            flex: 1;
+            margin-left: 260px;
+            overflow: auto
+        }
+
+        .topbar {
+            height: 70px;
+            background: #0a1628;
+            border-bottom: 1px solid color-mix(in srgb, var(--color-starlight-white) 7%, transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 10
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px
+        }
+
+        .menu-btn {
+            display: none;
+            color: var(--color-cosmic-violet);
+            font-size: 22px;
+            cursor: pointer
+        }
+
+        .topbar h2 {
+            color: #f1f5f9;
+            font-size: 18px
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #f1f5f9
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));   
+            color: var(--color-starlight-white);
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3)
+        }
+
+        .content {
+            display: none
+        }
+
+        .content.active {
+            display: block
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 22px
+        }
+
+        .card {
+            background: #0d1b2e;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid var(--color-nebula-purple);
+            display: flex;
+            align-items: center;
+            gap: 15px
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            flex-shrink: 0
+        }
+
+        .gold {
+            background: rgba(245, 158, 11, 0.15);
+           
+        }
+
+        .blue {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa
+        }
+
+        .green {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80
+        }
+
+        .red {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--color-cosmic-violet);
+        }
+
+        .purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc
+        }
+
+        .card h2 {
+            color: #f1f5f9;
+            margin-bottom: 4px;
+            font-size: 22px
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 13px
+        }
+
+        .table-box {
+            background: #0d1b2e;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid var(--color-nebula-purple);
+            overflow: auto;
+            margin-bottom: 20px
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .table-header h2 {
+            color: #f1f5f9;
+            font-size: 16px
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+            color: var(--color-starlight-white);
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25)
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(245, 158, 11, 0.35)
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            background: transparent;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 13px;
+           color: var(--color-cosmic-violet);   
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px
+        }
+
+        table th {
+            text-align: left;
+            padding: 12px;
+            color: var(--color-cosmic-violet); `
+            font-size: 13px
+        }
+
+        table td {
+            padding: 12px;
+            border-top: 1px solid color-mix(in srgb, var(--color-starlight-white) 5%, transparent);
+            color:  #94a3b8;
+            font-size: 13px
+        }
+
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600
+        }
+
+        .s-active {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80
+        }
+
+        .s-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--color-cosmic-violet);
+        }
+
+        .s-closed {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--color-cosmic-violet);
+        }
+
+        .s-blue {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa
+        }
+
+        .s-purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc
+        }
+
+        .page-title {
+            color: #f1f5f9;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px
+        }
+
+        .page-sub {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 22px
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 22px
+        }
+
+        .info-box {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 10px;
+            min-width: 280px;
+            border: 1px solid color-mix(in srgb, var(--color-starlight-white) 7%, transparent)
+        }
+
+        .info-box h3 {
+            color: var(--color-cosmic-violet);
+            font-size: 14px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid color-mix(in srgb, var(--color-starlight-white) 5%, transparent)
+        }
+
+        .info-row:last-child {
+            border-bottom: none
+        }
+
+        .info-label {
+            color: #64748b;
+            font-size: 13px
+        }
+
+        .info-value {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500
+        }
+
+        .client-card {
+            background: #131f33;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--color-nebula-purple);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px
+        }
+
+        .client-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-cosmic-violet);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: var(--color-starlight-white);
+            font-size: 17px;
+            flex-shrink: 0
+        }
+
+        .client-name {
+            color: #f1f5f9;
+            font-size: 15px;
+            font-weight: 500
+        }
+
+        .client-case {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 3px
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: auto
+        }
+
+        .setting-section {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--color-nebula-purple);
+            margin-bottom: 18px
+        }
+
+        .setting-section h3 {
+            color: var(--color-cosmic-violet);
+            font-size: 15px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid color-mix(in srgb, var(--color-starlight-white) 7%, transparent)
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid color-mix(in srgb, var(--color-starlight-white) 4%, transparent)
+        }
+
+        .setting-row:last-child {
+            border-bottom: none
+        }
+
+        .setting-label {
+            color: #e2e8f0;
+            font-size: 14px
+        }
+
+        .setting-desc {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 3px
+        }
+
+        .toggle {
+            width: 44px;
+            height: 24px;
+            border-radius: 20px;
+            background: #1e293b;
+            position: relative;
+            cursor: pointer;
+            transition: .3s;
+            flex-shrink: 0
+        }
+
+        .toggle.on {
+            background-color: var(--color-cosmic-violet);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-starlight-white);
+            top: 3px;
+            left: 3px;
+            transition: .3s
+        }
+
+        .toggle.on::after {
+            left: 23px
+        }
+
+        .input-field {
+            background: #131f33;
+            border: 1px solid var(--color-nebula-purple);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #e2e8f0;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            width: 100%;
+            margin-bottom: 12px
+        }
+
+        .input-field:focus {
+            border-color: rgba(245, 158, 11, 0.4)
+        }
+
+        .passbox {
+            position: relative
+        }
+
+        .pass-icon {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-70%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #64748b
+        }
+
+        .meeting-card {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--color-nebula-purple);
+            margin-bottom: 14px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start
+        }
+
+        .meeting-date {
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 12px;
+            padding: 12px 14px;
+            text-align: center;
+            flex-shrink: 0
+        }
+
+        .meeting-day {
+           color: #00E5FF;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1
+        }
+
+        .meeting-month {
+            color: #00E5FF;
+            font-size: 11px;
+            margin-top: 3px
+        }
+
+        .meeting-title {
+            color: #f1f5f9;
+            font-size: 15px;
+            font-weight: 500
+        }
+
+        .meeting-meta {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 5px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .report-card {
+            background: #131f33;
+            border-radius: 16px;
+            padding: 20px;
+            border: none;
+            margin-bottom: 14px
+        }
+
+        .report-title {
+            color: #f1f5f9;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px
+        }
+
+        .progress-bar {
+            border-radius: 20px;
+            height: 8px;
+            background: #1e293b;
+            margin: 8px 0 4px
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: var(--color-cosmic-violet);
+          
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 12px
+        }
+
+        /* ---- HERO SECTION ---- */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 22px;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            padding: 36px 40px;
+            background: linear-gradient(120deg, #0a1628 60%, #1a2a0a 100%)
+        }
+
+        .hero-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none
+        }
+
+        .hero-stars span {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--color-starlight-white);
+            animation: twinkle 3s infinite alternate
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1.2;
+            margin-bottom: 8px
+        }
+
+        .hero-title span {
+            color: var(--color-cosmic-violet);
+        }
+
+        .hero-sub {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            max-width: 420px
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--color-cosmic-violet);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 8px
+        }
+
+        .hero-planet {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #1e3a5f, #0a1020);
+            box-shadow: 0 0 40px rgba(96, 165, 250, 0.2), inset 0 0 30px color-mix(in srgb, var(--color-deep-space) 50%, transparent);
+            opacity: .85
+        }
+
+        .hero-ring {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotateX(75deg);
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 18px solid rgba(245, 158, 11, 0.18);
+            pointer-events: none
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: .2
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        /* ---- GALAXY CARD ---- */
+        .galaxy-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 22px
+        }
+
+        .galaxy-card {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--color-nebula-purple);
+            position: relative;
+            overflow: hidden
+        }
+
+        .galaxy-card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08), transparent 70%)
+        }
+
+        .galaxy-num {
+            font-size: 26px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 4px
+        }
+
+        .galaxy-label {
+            font-size: 12px;
+            color: #64748b
+        }
+
+        .galaxy-icon {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            font-size: 28px;
+            opacity: .15
+        }
+
+        /* ---- LIVE TICKER ---- */
+        .live-ticker {
+            background: #0d1b2e;
+            border-radius: 14px;
+            padding: 12px 20px;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+            overflow: hidden
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--color-cosmic-violet);
+            animation: pulse 1.5s infinite;
+            flex-shrink: 0
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4)
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0)
+            }
+        }
+
+        .ticker-text {
+            font-size: 13px;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .ticker-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-cosmic-violet);
+            background: rgba(245, 158, 11, 0.12);
+            padding: 3px 10px;
+            border-radius: 8px;
+            flex-shrink: 0
+        }
+
+        /* ---- TIMELINE ---- */
+        .timeline {
+            position: relative;
+            padding-left: 28px
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(245, 158, 11, 0.2)
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 22px
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--color-cosmic-violet);
+            background: #0d1b2e
+        }
+
+        .tl-dot.done {
+            background-color: var(--color-cosmic-violet);
+        }
+
+        .tl-title {
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 3px
+        }
+
+        .tl-meta {
+            color: #64748b;
+            font-size: 12px
+        }
+
+        /* ---- PLANET CARD ---- */
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-bottom: 22px
+        }
+
+        .planet-card {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--color-nebula-purple);
+            text-align: center
+        }
+
+        .planet-orb {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px
+        }
+
+        .planet-name {
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .planet-detail {
+            color: #64748b;
+            font-size: 11px
+        }
+
+        /* ---- ALERT BANNER ---- */
+        .alert-banner {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 14px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px
+        }
+
+        .alert-banner i {
+            color: var(--color-cosmic-violet);
+            font-size: 18px;
+            flex-shrink: 0
+        }
+
+        .alert-text {
+            color: var(--color-cosmic-violet);
+            font-size: 13px
+        }
+
+        .alert-text strong {
+            color: var(--color-cosmic-violet)
+        }
+
+        /* ---- STAT RING ---- */
+        .stat-rings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-bottom: 22px
+        }
+
+        .stat-ring-card {
+            background: #0d1b2e;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--color-nebula-purple);
+            text-align: center
+        }
+
+        .ring-wrap {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 12px
+        }
+
+        .ring-wrap svg {
+            transform: rotate(-90deg)
+        }
+
+        .ring-label-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-cosmic-violet);
+        }
+
+        .ring-title {
+            color: #f1f5f9;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px
+        }
+
+        .ring-sub {
+            color: #64748b;
+            font-size: 11px
+        }
+
+        /* ---- EVENT PILL ---- */
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px
+        }
+
+        .event-pill {
+            background: #0d1b2e;
+            border-radius: 14px;
+            padding: 14px 18px;
+            border: 1px solid var(--color-nebula-purple);
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .event-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0
+        }
+
+        .event-name {
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px
+        }
+
+        .event-date {
+            color: #64748b;
+            font-size: 12px
+        }
+
+        .event-badge {
+            margin-left: auto;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0
+        }
+
+        /* ----- HOVER EFFECTS ----- */
+        .card, .table-box, .info-box, .client-card, .setting-section, .meeting-card, .report-card, .galaxy-card, .stat-ring-card, .event-pill {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover, .table-box:hover, .info-box:hover, .client-card:hover, .setting-section:hover, .meeting-card:hover, .report-card:hover, .galaxy-card:hover, .stat-ring-card:hover, .event-pill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.1);
+            border-color: var(--color-cosmic-violet);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media(max-width:768px) {
+            .main {
+                margin-left: 0;
+            }
+
+            .menu-btn {
+                display: block
+            }
+
+            .close-btn {
+                display: block
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -270px;
+                top: 0;
+                width: 260px;
+                height: 100vh;
+                z-index: 999
+            }
+
+            .sidebar.showSidebar {
+                left: 0
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr
+            }
+
+            .hero-planet,
+            .hero-ring {
+                display: none
+            }
+
+            .hero-title {
+                font-size: 22px
+            }
+        }
+
+        @media(max-width:500px) {
+
+            .admin-info h4,
+            .admin-info p {
+                display: none
+            }
+
+            .meeting-card {
+                flex-direction: column
+            }
+
+            .avatar {
+                width: 30px;
+                height: 30px;
+                font-size: 16px
+            }
+
+            .event-pill {
+                background: #0d1b2e;
+                border-radius: 14px;
+                padding: 14px 18px;
+                border: 1px solid var(--color-nebula-purple);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 14px
+            }
+        }
+
+        .logo img {
+            width: clamp(150px, 18vw, 200px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <div>
+                <img src="./src/logo (4) (1).webp" alt="company logo">
+            </div>
+            <span class="close-btn" id="closeBtn"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <ul class="menu">
+            <li class="active" data-page="dashboard"><a><i class="fa-solid fa-satellite"></i> Dashboard</a></li>
+            <li data-page="missions"><a><i class="fa-solid fa-rocket"></i> Client Management</a></li>
+            <li data-page="telescope"><a><i class="fa-solid fa-binoculars"></i> Client Projects</a></li>
+            <li data-page="launches"><a><i class="fa-solid fa-calendar-check"></i> Research Events</a></li>
+            <li data-page="analytics"><a><i class="fa-solid fa-chart-pie"></i> Analytics</a></li>
+            <li data-page="solarsystem"><a><i class="fa-solid fa-circle-dot"></i> Highlights</a></li>
+            <li data-page="settings"><a><i class="fa-solid fa-gear"></i> Settings</a></li>
+            <li id="logoutItem"><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></div>
+                <h2 id="pageTitle">Dashboard</h2>
+            </div>
+            <div class="admin-info">
+                <div class="avatar" id="avatarEl">A</div>
+                <div>
+                    <h4 style="font-size:14px;font-weight:600" id="adminEmail">admin@cosmix.space</h4>
+                    <p style="color:#64748b;font-size:12px;">Client</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== DASHBOARD ===== -->
+        <div class="content active" id="page-dashboard">
+            <div style="padding:22px 22px 0">
+
+                <!-- HERO -->
+              <div class="hero-section">
+    <div class="hero-stars" id="heroStars"></div>
+
+    <div style="position:relative;z-index:1">
+        <div class="hero-title">
+            Welcome Back to <span>Stackly</span><br>
+            Client Dashboard
+        </div>
+
+        <div class="hero-sub">
+            Explore celestial observations, telescope schedules,
+            deep-space discoveries, and live astronomical events
+            from your personalized astronomy dashboard.
+        </div>
+
+        <span class="hero-badge">
+            <i class="fa-solid fa-star" style="font-size:10px;color:#facc15"></i>
+            1,248 Observations Recorded
+        </span>
+
+        <span class="hero-badge">
+            <i class="fa-solid fa-telescope" style="font-size:10px"></i>
+            32 Telescope Sessions
+        </span>
+
+        <span class="hero-badge">
+            <i class="fa-solid fa-meteor" style="font-size:10px"></i>
+            15 Upcoming Sky Events
+        </span>
+    </div>
+
+    <div class="hero-planet"></div>
+    <div class="hero-ring"></div>
+</div>
+              <!-- LIVE TICKER -->
+<div class="live-ticker">
+    <div class="live-dot"></div>
+    <span class="ticker-label">LIVE</span>
+    <span class="ticker-text">
+        🔭 Tonight's Observation Session begins at 08:00 PM &nbsp;•&nbsp;
+        🌕 Full Moon viewing event scheduled for June 25 &nbsp;•&nbsp;
+        ☄ Perseid Meteor Shower peaks this weekend &nbsp;•&nbsp;
+        🌌 New James Webb telescope images added to gallery
+    </span>
+</div>
+
+<!-- ASTRONOMY CLIENT STATS -->
+<div class="galaxy-strip">
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">128</div>
+        <div class="galaxy-label">Observations Completed</div>
+        <i class="fa-solid fa-eye galaxy-icon" style="color:#f59e0b"></i>
+    </div>
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">24</div>
+        <div class="galaxy-label">Telescope Sessions</div>
+        <i class="fa-solid fa-telescope galaxy-icon" style="color:#60a5fa"></i>
+    </div>
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">86</div>
+        <div class="galaxy-label">Celestial Objects Viewed</div>
+        <i class="fa-solid fa-star galaxy-icon" style="color:#fbbf24"></i>
+    </div>
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">12</div>
+        <div class="galaxy-label">Research Projects</div>
+        <i class="fa-solid fa-flask galaxy-icon" style="color:#4ade80"></i>
+    </div>
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">7</div>
+        <div class="galaxy-label">Upcoming Events</div>
+        <i class="fa-solid fa-calendar-days galaxy-icon" style="color:#f87171"></i>
+    </div>
+
+    <div class="galaxy-card">
+        <div class="galaxy-num">95%</div>
+        <div class="galaxy-label">Observation Success</div>
+        <i class="fa-solid fa-chart-line galaxy-icon" style="color:#c084fc"></i>
+    </div>
+
+</div>
+
+<!-- NOTIFICATION -->
+<div class="alert-banner">
+    <i class="fa-solid fa-circle-info"></i>
+
+    <div class="alert-text">
+        <strong>Upcoming Observation:</strong>
+        Saturn Ring Observation Session starts tonight at 08:00 PM.
+        Weather conditions are favorable with 92% sky visibility.
+    </div>
+</div>
+            </div>
+           <div style="padding:0 22px 22px">
+
+    <!-- OBSERVERS TABLE -->
+    <div class="table-box">
+        <div class="table-header">
+            <h2>Registered Observers</h2>
+            <button class="btn-gold errorpage">+ Add Observer</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Membership</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Arjun Kumar</td>
+                    <td>Premium</td>
+                    <td>arjun@email.com</td>
+                    <td><span class="status s-active">Active</span></td>
+                </tr>
+
+                <tr>
+                    <td>Priya Sharma</td>
+                    <td>Gold</td>
+                    <td>priya@email.com</td>
+                    <td><span class="status s-active">Active</span></td>
+                </tr>
+
+                <tr>
+                    <td>Rahul Nair</td>
+                    <td>Standard</td>
+                    <td>rahul@email.com</td>
+                    <td><span class="status s-pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>Sneha Patel</td>
+                    <td>Premium</td>
+                    <td>sneha@email.com</td>
+                    <td><span class="status s-active">Active</span></td>
+                </tr>
+
+                <tr>
+                    <td>Vikram Singh</td>
+                    <td>Gold</td>
+                    <td>vikram@email.com</td>
+                    <td><span class="status s-closed">Inactive</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TELESCOPE BOOKINGS -->
+    <div class="table-box">
+        <div class="table-header">
+            <h2>Telescope Bookings</h2>
+            <button class="btn-gold errorpage">+ New Booking</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Telescope</th>
+                    <th>Target Object</th>
+                    <th>Status</th>
+                    <th>Observation Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Hubble-X</td>
+                    <td>Andromeda Galaxy</td>
+                    <td><span class="status s-active">Confirmed</span></td>
+                    <td>18 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>DeepSky Pro</td>
+                    <td>Saturn Rings</td>
+                    <td><span class="status s-pending">Pending</span></td>
+                    <td>20 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>Cosmix Vision</td>
+                    <td>Orion Nebula</td>
+                    <td><span class="status s-active">Scheduled</span></td>
+                    <td>22 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>SkyTracker XT</td>
+                    <td>Jupiter</td>
+                    <td><span class="status s-active">Confirmed</span></td>
+                    <td>24 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>Galaxy Scope</td>
+                    <td>Pleiades Cluster</td>
+                    <td><span class="status s-closed">Cancelled</span></td>
+                    <td>16 Jun 2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+        </div>
+
+        <!-- ===== MISSIONS ===== -->
+     <div class="content" id="page-missions" style="padding:22px">
+    <div class="page-title">Client Management</div>
+    <div class="page-sub">Monitor astronomy clients, research projects and observation requests</div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon gold"><i class="fa-solid fa-users"></i></div>
+            <div>
+                <h2>1,245</h2>
+                <p>Total Clients</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon green"><i class="fa-solid fa-user-check"></i></div>
+            <div>
+                <h2>487</h2>
+                <p>Active Clients</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon blue"><i class="fa-solid fa-user-plus"></i></div>
+            <div>
+                <h2>24</h2>
+                <p>New Clients This Month</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon red"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+                <h2>64</h2>
+                <p>Completed Projects</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="info-box">
+            <h3><i class="fa-solid fa-timeline"></i> Recent Client Activities</h3>
+
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot done"></div>
+                    <div class="tl-title">Research Proposal Submitted</div>
+                    <div class="tl-meta">01 Jun 2026 — Stellar Dynamics Program</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot done"></div>
+                    <div class="tl-title">Observation Request Approved</div>
+                    <div class="tl-meta">05 Jun 2026 — Deep Space Imaging</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot done"></div>
+                    <div class="tl-title">Data Collection Completed</div>
+                    <div class="tl-meta">09 Jun 2026 — Galaxy Mapping Project</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-title">Analysis Review Meeting</div>
+                    <div class="tl-meta">22 Jun 2026 — Upcoming</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-title">Final Report Delivery</div>
+                    <div class="tl-meta">28 Jun 2026 — Scheduled</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3><i class="fa-solid fa-chart-line"></i> Client Summary</h3>
+
+            <div class="info-row">
+                <span class="info-label">Research Institutes</span>
+                <span class="info-value">420</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Universities</span>
+                <span class="info-value">680</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Private Observatories</span>
+                <span class="info-value">390</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Average Project Duration</span>
+                <span class="info-value">8 Months</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Client Satisfaction</span>
+                <span class="info-value">97%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-box">
+        <div class="table-header">
+            <h2>All Clients</h2>
+
+            <div style="display:flex;gap:10px">
+                <button class="btn-outline errorpage">Export</button>
+                <button class="btn-gold errorpage">+ Add Client</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Organization</th>
+                    <th>Project Type</th>
+                    <th>Project Lead</th>
+                    <th>Status</th>
+                    <th>Joined Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Sarah Johnson</td>
+                    <td>Harvard Observatory</td>
+                    <td>Galaxy Research</td>
+                    <td>Dr. Neil Carter</td>
+                    <td><span class="status s-active">Active</span></td>
+                    <td>01 Jan 2026</td>
+                </tr>
+
+                <tr>
+                    <td>Michael Brown</td>
+                    <td>NASA Research Center</td>
+                    <td>Exoplanet Study</td>
+                    <td>Alex Iyer</td>
+                    <td><span class="status s-active">Active</span></td>
+                    <td>10 Feb 2026</td>
+                </tr>
+
+                <tr>
+                    <td>Emily Wilson</td>
+                    <td>ESA Science Team</td>
+                    <td>Deep Space Survey</td>
+                    <td>Dr. Priya Sharma</td>
+                    <td><span class="status s-pending">In Progress</span></td>
+                    <td>15 Mar 2026</td>
+                </tr>
+
+                <tr>
+                    <td>David Lee</td>
+                    <td>Space Research Lab</td>
+                    <td>Asteroid Tracking</td>
+                    <td>Sara Menon</td>
+                    <td><span class="status s-active">Active</span></td>
+                    <td>20 Apr 2026</td>
+                </tr>
+
+                <tr>
+                    <td>Olivia Davis</td>
+                    <td>National Observatory</td>
+                    <td>Star Mapping</td>
+                    <td>Alex Iyer</td>
+                    <td><span class="status s-closed">Completed</span></td>
+                    <td>05 May 2026</td>
+                </tr>
+
+                <tr>
+                    <td>James Taylor</td>
+                    <td>Cosmic Analytics</td>
+                    <td>Data Analysis</td>
+                    <td>Dr. Neil Carter</td>
+                    <td><span class="status s-pending">Review</span></td>
+                    <td>12 May 2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="grid-2">
+        <div class="info-box">
+            <h3><i class="fa-solid fa-trophy"></i> Top Clients</h3>
+
+            <div class="client-card">
+                <div class="client-avatar">H</div>
+                <div>
+                    <div class="client-name">Harvard Observatory</div>
+                    <div class="client-case">Galaxy Research Program</div>
+                </div>
+                <span class="badge s-active">15 Projects</span>
+            </div>
+
+            <div class="client-card">
+                <div class="client-avatar">N</div>
+                <div>
+                    <div class="client-name">NASA Research Center</div>
+                    <div class="client-case">Exoplanet Research</div>
+                </div>
+                <span class="badge s-blue">12 Projects</span>
+            </div>
+
+            <div class="client-card">
+                <div class="client-avatar">E</div>
+                <div>
+                    <div class="client-name">ESA Science Team</div>
+                    <div class="client-case">Deep Space Survey</div>
+                </div>
+                <span class="badge s-active">10 Projects</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3><i class="fa-solid fa-users"></i> Client Categories</h3>
+
+            <div class="info-row">
+                <span class="info-label">Universities</span>
+                <span class="info-value">380 Clients</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Research Institutes</span>
+                <span class="info-value">210 Clients</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Government Agencies</span>
+                <span class="info-value">124 Clients</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Private Observatories</span>
+                <span class="info-value">96 Clients</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Space Companies</span>
+                <span class="info-value">88 Clients</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Others</span>
+                <span class="info-value">347 Clients</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- ===== TELESCOPE DATA ===== -->
+     <div class="content" id="page-telescope" style="padding:22px">
+    <div class="page-title">Client Projects</div>
+    <div class="page-sub">Manage astronomy clients, research projects, observations and data analysis</div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon blue"><i class="fa-solid fa-users"></i></div>
+            <div>
+                <h2>128</h2>
+                <p>Active Clients</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon gold"><i class="fa-solid fa-diagram-project"></i></div>
+            <div>
+                <h2>42</h2>
+                <p>Research Projects</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon green"><i class="fa-solid fa-star"></i></div>
+            <div>
+                <h2>8,920</h2>
+                <p>Observations Completed</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon red"><i class="fa-solid fa-clock"></i></div>
+            <div>
+                <h2>14</h2>
+                <p>Pending Reviews</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAT RINGS -->
+    <div class="stat-rings">
+        <div class="stat-ring-card">
+            <div class="ring-wrap">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#1e293b" stroke-width="10" />
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#f59e0b" stroke-width="10"
+                        stroke-dasharray="201" stroke-dashoffset="28" stroke-linecap="round" />
+                </svg>
+                <div class="ring-label-inner">86%</div>
+            </div>
+            <div class="ring-title">Project Completion</div>
+            <div class="ring-sub">Research Progress</div>
+        </div>
+
+        <div class="stat-ring-card">
+            <div class="ring-wrap">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#1e293b" stroke-width="10" />
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#60a5fa" stroke-width="10"
+                        stroke-dasharray="201" stroke-dashoffset="55" stroke-linecap="round" />
+                </svg>
+                <div class="ring-label-inner" style="color:#60a5fa">72%</div>
+            </div>
+            <div class="ring-title">Client Satisfaction</div>
+            <div class="ring-sub">Feedback Rating</div>
+        </div>
+
+        <div class="stat-ring-card">
+            <div class="ring-wrap">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#1e293b" stroke-width="10" />
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#4ade80" stroke-width="10"
+                        stroke-dasharray="201" stroke-dashoffset="18" stroke-linecap="round" />
+                </svg>
+                <div class="ring-label-inner" style="color:#4ade80">91%</div>
+            </div>
+            <div class="ring-title">Observation Accuracy</div>
+            <div class="ring-sub">Verified Data Sets</div>
+        </div>
+
+        <div class="stat-ring-card">
+            <div class="ring-wrap">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#1e293b" stroke-width="10" />
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#c084fc" stroke-width="10"
+                        stroke-dasharray="201" stroke-dashoffset="70" stroke-linecap="round" />
+                </svg>
+                <div class="ring-label-inner" style="color:#c084fc">65%</div>
+            </div>
+            <div class="ring-title">Data Processing</div>
+            <div class="ring-sub">Analysis Queue</div>
+        </div>
+    </div>
+
+    <div class="table-box">
+        <div class="table-header">
+            <h2>Client Project Records</h2>
+            <div style="display:flex;gap:10px">
+                <button class="btn-outline errorpage">Filter</button>
+                <button class="btn-gold errorpage">+ Add Project</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Client</th>
+                    <th>Research Area</th>
+                    <th>Lead Astronomer</th>
+                    <th>Data Volume</th>
+                    <th>Status</th>
+                    <th>Updated</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>#ARP-001</td>
+                    <td>Stellar Research Ltd</td>
+                    <td>Exoplanet Survey</td>
+                    <td>Dr. Sophia Lee</td>
+                    <td>12.4 TB</td>
+                    <td><span class="status s-active">Active</span></td>
+                    <td>15 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>#ARP-002</td>
+                    <td>Cosmic Labs</td>
+                    <td>Galaxy Mapping</td>
+                    <td>Dr. Ethan Ross</td>
+                    <td>8.7 TB</td>
+                    <td><span class="status s-pending">Review</span></td>
+                    <td>13 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>#ARP-003</td>
+                    <td>Nebula Observatory</td>
+                    <td>Nebula Imaging</td>
+                    <td>Dr. Ava Carter</td>
+                    <td>6.3 TB</td>
+                    <td><span class="status s-active">Active</span></td>
+                    <td>16 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>#ARP-004</td>
+                    <td>Deep Space Institute</td>
+                    <td>Black Hole Research</td>
+                    <td>Dr. Noah Green</td>
+                    <td>14.9 TB</td>
+                    <td><span class="status s-pending">Analysis</span></td>
+                    <td>10 Jun 2026</td>
+                </tr>
+
+                <tr>
+                    <td>#ARP-005</td>
+                    <td>SkyWatch Center</td>
+                    <td>Asteroid Tracking</td>
+                    <td>Dr. Olivia Clark</td>
+                    <td>2.1 TB</td>
+                    <td><span class="status s-closed">Completed</span></td>
+                    <td>08 Jun 2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="grid-2">
+
+        <div class="info-box">
+            <h3><i class="fa-solid fa-chart-pie"></i> Research Categories</h3>
+
+            <div class="info-row"><span class="info-label">Exoplanet Studies</span><span class="info-value">1,850</span></div>
+            <div class="info-row"><span class="info-label">Galaxy Research</span><span class="info-value">1,620</span></div>
+            <div class="info-row"><span class="info-label">Black Hole Analysis</span><span class="info-value">1,140</span></div>
+            <div class="info-row"><span class="info-label">Nebula Imaging</span><span class="info-value">980</span></div>
+            <div class="info-row"><span class="info-label">Solar Studies</span><span class="info-value">870</span></div>
+            <div class="info-row"><span class="info-label">Asteroid Tracking</span><span class="info-value">540</span></div>
+        </div>
+
+        <div class="info-box">
+            <h3><i class="fa-solid fa-file-lines"></i> Client Deliverables</h3>
+
+            <div class="info-row">
+                <span class="info-label">📄 Exoplanet_Report_Q2.pdf</span>
+                <span class="info-value errorpage" style="color:#60a5fa;font-size:12px;cursor:pointer">View</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📄 Galaxy_Mapping_Analysis.pdf</span>
+                <span class="info-value errorpage" style="color:#60a5fa;font-size:12px;cursor:pointer">View</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📄 BlackHole_Data_Report.pdf</span>
+                <span class="info-value errorpage" style="color:#60a5fa;font-size:12px;cursor:pointer">View</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📄 Nebula_Image_Set.pdf</span>
+                <span class="info-value errorpage" style="color:#60a5fa;font-size:12px;cursor:pointer">View</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📄 Asteroid_Tracking_Report.pdf</span>
+                <span class="info-value errorpage" style="color:#60a5fa;font-size:12px;cursor:pointer">View</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        <!-- ===== LAUNCHES & EVENTS ===== -->
+     <div class="content" id="page-launches" style="padding:22px">
+    <div class="page-title"> Research Events</div>
+    <div class="page-sub">Track client meetings, project milestones and astronomy research events</div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon blue"><i class="fa-solid fa-users"></i></div>
+            <div>
+                <h2>12</h2>
+                <p>Client Meetings</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon gold"><i class="fa-solid fa-calendar-days"></i></div>
+            <div>
+                <h2>28</h2>
+                <p>Monthly Events</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon green"><i class="fa-solid fa-flask"></i></div>
+            <div>
+                <h2>7</h2>
+                <p>Research Reviews</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon red"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div>
+                <h2>3</h2>
+                <p>Pending Approvals</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESEARCH EVENTS -->
+    <div class="table-box" style="margin-bottom:22px">
+        <div class="table-header">
+            <h2>Research Events This Month</h2>
+            <button class="btn-gold errorpage">+ Add Event</button>
+        </div>
+
+        <div class="event-list" style="padding:0 4px">
+
+            <div class="event-pill">
+                <div class="event-icon gold">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div>
+                    <div class="event-name">Exoplanet Discovery Presentation</div>
+                    <div class="event-date">Jun 20, 2026 — 10:00 AM</div>
+                </div>
+                <span class="event-badge s-active">Confirmed</span>
+            </div>
+
+            <div class="event-pill">
+                <div class="event-icon blue">
+                    <i class="fa-solid fa-telescope"></i>
+                </div>
+                <div>
+                    <div class="event-name">Deep Space Observation Session</div>
+                    <div class="event-date">Jun 24, 2026 — 08:30 PM</div>
+                </div>
+                <span class="event-badge s-pending">Upcoming</span>
+            </div>
+
+            <div class="event-pill">
+                <div class="event-icon purple">
+                    <i class="fa-solid fa-meteor"></i>
+                </div>
+                <div>
+                    <div class="event-name">Asteroid Tracking Workshop</div>
+                    <div class="event-date">Jun 28, 2026 — 02:00 PM</div>
+                </div>
+                <span class="event-badge s-blue">Scheduled</span>
+            </div>
+
+            <div class="event-pill">
+                <div class="event-icon green">
+                    <i class="fa-solid fa-satellite"></i>
+                </div>
+                <div>
+                    <div class="event-name">Satellite Data Review</div>
+                    <div class="event-date">Jun 30, 2026 — 11:00 AM</div>
+                </div>
+                <span class="event-badge s-active">This Week</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="table-box">
+        <div class="table-header">
+            <h2>Upcoming Client Meetings</h2>
+            <button class="btn-gold errorpage">+ Schedule Meeting</button>
+        </div>
+
+        <div style="padding:0 0 10px">
+
+            <div class="meeting-card">
+                <div class="meeting-date">
+                    <div class="meeting-day">18</div>
+                    <div class="meeting-month">JUN</div>
+                </div>
+
+                <div>
+                    <div class="meeting-title">Stellar Research Ltd - Project Review</div>
+                    <div class="meeting-meta">
+                        <span><i class="fa-solid fa-clock"></i> 09:00 AM</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Virtual Meeting</span>
+                        <span><i class="fa-solid fa-user"></i> Dr. Sophia Lee</span>
+                    </div>
+                </div>
+
+                <span class="badge s-active" style="margin-left:auto;white-space:nowrap">
+                    Today
+                </span>
+            </div>
+
+            <div class="meeting-card">
+                <div class="meeting-date">
+                    <div class="meeting-day">22</div>
+                    <div class="meeting-month">JUN</div>
+                </div>
+
+                <div>
+                    <div class="meeting-title">Cosmic Labs - Data Analysis Review</div>
+                    <div class="meeting-meta">
+                        <span><i class="fa-solid fa-clock"></i> 02:30 PM</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Research Center</span>
+                        <span><i class="fa-solid fa-user"></i> Dr. Ethan Ross</span>
+                    </div>
+                </div>
+
+                <span class="badge s-blue" style="margin-left:auto;white-space:nowrap">
+                    Scheduled
+                </span>
+            </div>
+
+            <div class="meeting-card">
+                <div class="meeting-date">
+                    <div class="meeting-day">27</div>
+                    <div class="meeting-month">JUN</div>
+                </div>
+
+                <div>
+                    <div class="meeting-title">Nebula Observatory - Progress Update</div>
+                    <div class="meeting-meta">
+                        <span><i class="fa-solid fa-clock"></i> 11:00 AM</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Main Observatory</span>
+                        <span><i class="fa-solid fa-user"></i> Dr. Ava Carter</span>
+                    </div>
+                </div>
+
+                <span class="badge s-active" style="margin-left:auto;white-space:nowrap">
+                    Confirmed
+                </span>
+            </div>
+
+            <div class="meeting-card">
+                <div class="meeting-date">
+                    <div class="meeting-day">30</div>
+                    <div class="meeting-month">JUN</div>
+                </div>
+
+                <div>
+                    <div class="meeting-title">Deep Space Institute - Final Presentation</div>
+                    <div class="meeting-meta">
+                        <span><i class="fa-solid fa-clock"></i> 04:00 PM</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Conference Hall</span>
+                        <span><i class="fa-solid fa-user"></i> Dr. Noah Green</span>
+                    </div>
+                </div>
+
+                <span class="badge s-pending" style="margin-left:auto;white-space:nowrap">
+                    Pending
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ===== ANALYTICS ===== -->
+<div class="content" id="page-analytics" style="padding:22px">
+    <div class="page-title">Client Analytics</div>
+    <div class="page-sub">Astronomy project statistics, observation performance and client activity reports</div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon green">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+                <h2>1,248</h2>
+                <p>Total Clients</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon blue">
+                <i class="fa-solid fa-telescope"></i>
+            </div>
+            <div>
+                <h2>432</h2>
+                <p>Observations Completed</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon gold">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div>
+                <h2>96%</h2>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon red">
+                <i class="fa-solid fa-calendar-clock"></i>
+            </div>
+            <div>
+                <h2>58</h2>
+                <p>Pending Sessions</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+
+        <div class="info-box">
+            <h3>
+                <i class="fa-solid fa-chart-line"></i>
+                Observation Category Performance
+            </h3>
+
+            <div class="report-card">
+                <div class="report-title">Deep Sky Objects</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:88%"></div>
+                </div>
+                <div class="progress-label">
+                    <span>520 Sessions</span>
+                    <span>88%</span>
+                </div>
+            </div>
+
+            <div class="report-card">
+                <div class="report-title">Planetary Observation</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:74%"></div>
+                </div>
+                <div class="progress-label">
+                    <span>410 Sessions</span>
+                    <span>74%</span>
+                </div>
+            </div>
+
+            <div class="report-card">
+                <div class="report-title">Astrophotography</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:67%"></div>
+                </div>
+                <div class="progress-label">
+                    <span>328 Projects</span>
+                    <span>67%</span>
+                </div>
+            </div>
+
+            <div class="report-card">
+                <div class="report-title">Educational Programs</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:52%"></div>
+                </div>
+                <div class="progress-label">
+                    <span>210 Events</span>
+                    <span>52%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>
+                <i class="fa-solid fa-user-group"></i>
+                Top Client Engagement
+            </h3>
+
+            <div style="margin-bottom:14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                    <span style="color:#e2e8f0;font-size:13px">Stellar Research Group</span>
+                    <span style="color:#f59e0b;font-size:13px">42 Projects • 94%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:94%"></div>
+                </div>
+            </div>
+
+            <div style="margin-bottom:14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                    <span style="color:#e2e8f0;font-size:13px">Cosmos Education Trust</span>
+                    <span style="color:#f59e0b;font-size:13px">35 Projects • 86%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:86%"></div>
+                </div>
+            </div>
+
+            <div style="margin-bottom:14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                    <span style="color:#e2e8f0;font-size:13px">Galaxy Explorer Club</span>
+                    <span style="color:#f59e0b;font-size:13px">28 Projects • 78%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:78%"></div>
+                </div>
+            </div>
+
+            <div class="info-row" style="margin-top:12px">
+                <span class="info-label">Annual Observation Goal</span>
+                <span class="info-value" style="color:#4ade80">1,500 Sessions</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Completed</span>
+                <span class="info-value" style="color:#f59e0b">1,248 (83%)</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Upcoming Bookings</span>
+                <span class="info-value" style="color:#f87171">58 Sessions</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- ===== CLIENT PROJECTS ===== -->
+<div class="content" id="page-solarsystem" style="padding:22px">
+    <div class="page-title">Highlights</div>
+    <div class="page-sub">Ongoing astronomy projects, observation programs and client activities</div>
+
+    <div class="planet-grid">
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#60a5fa,#1e3a8a)">
+                🔭
+            </div>
+            <div class="planet-name">Deep Sky Survey</div>
+            <div class="planet-detail">128 Observation Sessions</div>
+            <div style="margin-top:8px">
+                <span class="status s-active">Active</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#f59e0b,#78350f)">
+                📷
+            </div>
+            <div class="planet-name">Astrophotography</div>
+            <div class="planet-detail">82 Imaging Projects</div>
+            <div style="margin-top:8px">
+                <span class="status s-pending">In Progress</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#22c55e,#14532d)">
+                🌌
+            </div>
+            <div class="planet-name">Galaxy Research</div>
+            <div class="planet-detail">64 Research Reports</div>
+            <div style="margin-top:8px">
+                <span class="status s-active">Running</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#ef4444,#7f1d1d)">
+                🪐
+            </div>
+            <div class="planet-name">Planetary Tracking</div>
+            <div class="planet-detail">41 Active Observations</div>
+            <div style="margin-top:8px">
+                <span class="status s-active">Live</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#8b5cf6,#312e81)">
+                ☄️
+            </div>
+            <div class="planet-name">Comet Monitoring</div>
+            <div class="planet-detail">22 Objects Tracked</div>
+            <div style="margin-top:8px">
+                <span class="status s-pending">Monitoring</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#06b6d4,#164e63)">
+                ⭐
+            </div>
+            <div class="planet-name">Star Classification</div>
+            <div class="planet-detail">560 Stars Cataloged</div>
+            <div style="margin-top:8px">
+                <span class="status s-blue">Completed</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#f97316,#7c2d12)">
+                🌠
+            </div>
+            <div class="planet-name">Meteor Watch</div>
+            <div class="planet-detail">14 Annual Events</div>
+            <div style="margin-top:8px">
+                <span class="status s-pending">Scheduled</span>
+            </div>
+        </div>
+
+        <div class="planet-card">
+            <div class="planet-orb" style="background:radial-gradient(circle at 40% 35%,#64748b,#1e293b)">
+                🛰️
+            </div>
+            <div class="planet-name">Satellite Analysis</div>
+            <div class="planet-detail">38 Data Projects</div>
+            <div style="margin-top:8px">
+                <span class="status s-closed">Archived</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid-2 planet">
+
+        <div class="info-box">
+            <h3>
+                <i class="fa-solid fa-list"></i>
+                Project Highlights
+            </h3>
+
+            <div class="info-row">
+                <span class="info-label">Most Popular Service</span>
+                <span class="info-value">Astrophotography</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Active Projects</span>
+                <span class="info-value">337</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Completed Projects</span>
+                <span class="info-value">1,124</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Research Reports</span>
+                <span class="info-value">642</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Client Retention</span>
+                <span class="info-value">96%</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Upcoming Sessions</span>
+                <span class="info-value">58</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>
+                <i class="fa-solid fa-users"></i>
+                Featured Client Projects
+            </h3>
+
+            <div class="client-card">
+                <div class="client-avatar"
+                    style="font-size:20px;background:radial-gradient(#60a5fa,#1e3a8a)">
+                    🔭
+                </div>
+                <div>
+                    <div class="client-name">Cosmic Vision Institute</div>
+                    <div class="client-case">Deep Sky Mapping Campaign</div>
+                </div>
+                <span class="badge s-active">Active</span>
+            </div>
+
+            <div class="client-card">
+                <div class="client-avatar"
+                    style="font-size:20px;background:radial-gradient(#f59e0b,#78350f)">
+                    📷
+                </div>
+                <div>
+                    <div class="client-name">Star Capture Society</div>
+                    <div class="client-case">Astrophotography Collection</div>
+                </div>
+                <span class="badge s-pending">Review</span>
+            </div>
+
+            <div class="client-card">
+                <div class="client-avatar"
+                    style="font-size:20px;background:radial-gradient(#22c55e,#14532d)">
+                    🌌
+                </div>
+                <div>
+                    <div class="client-name">Galaxy Research Center</div>
+                    <div class="client-case">Extragalactic Observation Study</div>
+                </div>
+                <span class="badge s-active">Running</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+   <!-- ===== SETTINGS ===== -->
+<div class="content" id="page-settings" style="padding:22px">
+    <div class="page-title">Settings</div>
+    <div class="page-sub">Manage client profile, communication preferences and account security</div>
+
+    <div class="grid-2">
+
+        <div>
+
+            <div class="setting-section">
+                <h3><i class="fa-solid fa-user"></i> Client Profile</h3>
+
+                <label style="color:#94a3b8;font-size:12px">Client Name</label>
+                <input class="input-field" id="clientName" value="Stellar Research Institute">
+
+                <label style="color:#94a3b8;font-size:12px">Email Address</label>
+                <input class="input-field" id="clientEmail" value="contact@stellarresearch.com">
+
+                <label style="color:#94a3b8;font-size:12px">Contact Number</label>
+                <input class="input-field" id="clientPhone" value="9876543210">
+
+                <label style="color:#94a3b8;font-size:12px">Organization Address</label>
+                <input class="input-field" id="clientAddr"
+                    value="21 Galaxy Tech Park, Bengaluru - 560001">
+
+                <button class="btn-gold" id="saveBtn"
+                    style="width:100%;padding:12px;border-radius:12px;margin-top:4px">
+                    Save Changes
+                </button>
+            </div>
+
+            <div class="setting-section">
+                <h3><i class="fa-solid fa-lock"></i> Security Settings</h3>
+
+                <label style="color:#94a3b8;font-size:12px">Current Password</label>
+                <div class="passbox">
+                    <input class="input-field" id="curPass" type="password"
+                        placeholder="Enter Current Password">
+                    <span class="material-symbols-outlined pass-icon">visibility_off</span>
+                </div>
+
+                <label style="color:#94a3b8;font-size:12px">New Password</label>
+                <div class="passbox">
+                    <input class="input-field" id="newPass" type="password"
+                        placeholder="Enter New Password">
+                    <span class="material-symbols-outlined pass-icon">visibility_off</span>
+                </div>
+
+                <button class="btn-gold" id="passBtn"
+                    style="width:100%;padding:12px;border-radius:12px;margin-top:4px">
+                    Change Password
+                </button>
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="setting-section">
+                <h3><i class="fa-solid fa-bell"></i> Notifications</h3>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">Observation Updates</div>
+                        <div class="setting-desc">Receive updates on active observation projects</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">Project Reports</div>
+                        <div class="setting-desc">Get notified when reports are generated</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">Upcoming Events</div>
+                        <div class="setting-desc">Astronomy events and observation schedules</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">System Announcements</div>
+                        <div class="setting-desc">Receive platform updates and alerts</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+            </div>
+
+            <div class="setting-section">
+                <h3><i class="fa-solid fa-sliders"></i> Preferences</h3>
+
+                <div class="setting-row">
+                    <div>
+                       <div class="setting-label">Research Updates</div>
+<div class="setting-desc">Access the latest astronomy studies and observations</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">Auto Report Download</div>
+                        <div class="setting-desc">Automatically save generated reports</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-label">Two-Factor Authentication</div>
+                        <div class="setting-desc">Additional security for your account</div>
+                    </div>
+                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                </div>
+
+            </div>
+
+            <div class="setting-section">
+                <h3><i class="fa-solid fa-users"></i> Team Access Control</h3>
+
+                <div class="info-row">
+                    <span class="info-label">Dr. Priya Sharma</span>
+                    <span class="status s-active">Administrator</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">Arun Kumar</span>
+                    <span class="status s-blue">Project Manager</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">Meera Nair</span>
+                    <span class="status s-pending">Research Analyst</span>
+                </div>
+
+                <button class="btn-outline errorpage"
+                    style="width:100%;margin-top:14px;padding:10px">
+                    Manage Access
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    </div>
+
+    <script>
+        // NAVIGATION
+        const menuItems = document.querySelectorAll('.menu li[data-page]');
+        const pages = document.querySelectorAll('.content');
+        const pageTitle = document.getElementById('pageTitle');
+        const titles = { dashboard: 'Dashboard', missions: 'Client Management', telescope: 'Client Projects', launches: 'Research Events', analytics: 'Analytics', solarsystem: 'Highlights', settings: 'Settings' };
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                const page = item.dataset.page;
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + page).classList.add('active');
+                pageTitle.textContent = titles[page] || page;
+                document.getElementById('sidebar').classList.remove('showSidebar');
+            });
+        });
+        document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('sidebar').classList.add('showSidebar'));
+        document.getElementById('closeBtn').addEventListener('click', () => document.getElementById('sidebar').classList.remove('showSidebar'));
+
+        // HERO STARS
+        const heroStars = document.getElementById('heroStars');
+        if (heroStars) { for (let i = 0; i < 60; i++) { const s = document.createElement('span'); const size = Math.random() * 2.5 + 0.5; s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random() * 100}%;left:${Math.random() * 100}%;animation-delay:${Math.random() * 3}s;animation-duration:${2 + Math.random() * 3}s`; heroStars.appendChild(s); } }
+
+        // PASSWORD EYE
+        document.querySelectorAll('.pass-icon').forEach(btn => {
+            const input = btn.parentElement.querySelector('input');
+            btn.addEventListener('click', () => {
+                if (input.type === 'password') { input.type = 'text'; btn.textContent = 'visibility'; }
+                else { input.type = 'password'; btn.textContent = 'visibility_off'; }
+            });
+        });
+        //validation
+
+        const clientName = document.getElementById("clientName");
+const clientEmail = document.getElementById("clientEmail");
+const clientPhone = document.getElementById("clientPhone");
+const clientAddr = document.getElementById("clientAddr");
+const saveBtn = document.getElementById("saveBtn");
+
+// Name: letters & spaces only
+clientName.addEventListener("input", () => {
+    clientName.value = clientName.value.replace(/[^A-Za-z\s]/g, "");
+});
+
+// Phone: numbers only, max 10 digits
+clientPhone.addEventListener("input", () => {
+    clientPhone.value = clientPhone.value.replace(/\D/g, "").slice(0, 10);
+});
+
+saveBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const name = clientName.value.trim();
+    const email = clientEmail.value.trim();
+    const phone = clientPhone.value.trim();
+    const address = clientAddr.value.trim();
+
+    const namePattern = /^[A-Za-z\s]+$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{10}$/;
+
+    if (name === "") {
+        alert("Please enter client name");
+        clientName.focus();
+        return;
+    }
+
+    if (!namePattern.test(name)) {
+        alert("Client name should contain only letters");
+        clientName.focus();
+        return;
+    }
+
+    if (email === "") {
+        alert("Please enter email address");
+        clientEmail.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        clientEmail.focus();
+        return;
+    }
+
+    if (phone === "") {
+        alert("Please enter contact number");
+        clientPhone.focus();
+        return;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert("Contact number must contain exactly 10 digits");
+        clientPhone.focus();
+        return;
+    }
+
+    if (address === "") {
+        alert("Please enter organization address");
+        clientAddr.focus();
+        return;
+    }
+
+    alert("Profile updated successfully!");
+});
+       
+        // CHANGE PASSWORD
+        document.getElementById('passBtn').addEventListener('click', () => {
+            const c = document.getElementById('curPass').value.trim();
+            const n = document.getElementById('newPass').value.trim();
+            if (!c || !n) { alert('Please fill all password fields'); return; }
+            if (n.length < 6) { alert('New password must be at least 6 characters'); return; }
+            alert('Password Changed Successfully!');
+            document.getElementById('curPass').value = '';
+            document.getElementById('newPass').value = '';
+        });
+
+        // LIVE TICKER AUTO-SCROLL
+        const ticker = document.querySelector('.ticker-text');
+        if (ticker) {
+            const msgs = ['🛰 Chandrayaan-4 entered lunar orbit at 09:42 IST', '🌌 JWST captured Galaxy cluster ZW3146 deep-field image', '☄ NEO 2026 HX3 flyby confirmed safe at 2.4M km', '🚀 Starship Mission 9 window opens June 22', '🌙 Artemis III countdown initiated — T-24 hours', '🌞 Solar Activity Index: Moderate (Kp=3)'];
+            let idx = 0;
+            setInterval(() => { idx = (idx + 1) % msgs.length; ticker.style.opacity = '0'; setTimeout(() => { ticker.textContent = msgs[idx]; ticker.style.opacity = '1'; }, 400); }, 4000);
+            ticker.style.transition = 'opacity 0.4s';
+        }
+
+        //
+
+        const savedEmail = localStorage.getItem("userEmail");
+
+        if (savedEmail) {
+
+            document.getElementById("adminEmail").textContent = savedEmail;
+
+            document.getElementById("avatarEl").textContent =
+                savedEmail.charAt(0).toUpperCase();
+        }
+
+        //error page
+
+        document.querySelectorAll(".errorpage").forEach(element => {
+
+            element.style.cursor = "pointer";
+
+            element.addEventListener("click", () => {
+                window.location.href = "404.html";
+            });
+
+        });
+    </script>
+</body>
+
+</html>

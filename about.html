@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy - About Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Space+Grotesk:wght@300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000&family=Noto+Sans:ital,wght@0,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        :root {
+            --color-deep-space: #000000;
+            --color-midnight-blue: #15132A;
+            --color-nebula-purple: #6A11CB;
+            --color-cosmic-violet: #00E5FF;
+            --color-bright-purple: #2575FC;
+            --color-starlight-white: #FFFFFF;
+        }
+
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: var(--color-deep-space);
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: transparent;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            font-family: "Noto Sans", sans-serif;
+            z-index: 99999;
+            transition: 0.2s ease;
+        }
+
+        .header.scrolled {
+            background: var(--color-deep-space);
+            box-shadow: 2px 2px 10px var(--color-deep-space);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 190px;
+        }
+
+        .menus {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .menus ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menus ul li {
+            list-style: none;
+        }
+
+        .menus ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--color-starlight-white);
+            position: relative;
+        }
+
+        .menus ul li a::after {
+            content: "";
+            background: var(--color-cosmic-violet);
+            height: 2px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            bottom: -5px;
+            transition: 0.3s ease;
+        }
+
+        .menus ul li a:hover::after {
+            width: 100%;
+        }
+
+
+        .menus ul li a.active::after {
+            width: 100%;
+        }
+
+        .menus ul li a.active {
+            color: var(--color-cosmic-violet);
+        }
+
+        .menu-btn,
+        .close-btn {
+            display: none;
+        }
+
+        .nav-btn {
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+            color: var(--color-deep-space);
+            transition: all 0.35s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px color-mix(in srgb, var(--color-cosmic-violet) 40%, transparent);
+            filter: brightness(1.08);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width:780px) {
+            .menus {
+                display: none;
+                position: absolute;
+                flex-direction: column;
+                justify-content: flex-start;
+                background: var(--color-deep-space);
+                align-items: flex-start;
+                height: 100vh;
+                top: 0px;
+                left: 0px;
+                width: 70%;
+                padding: 27px 25px;
+                gap: 30px;
+            }
+
+            .menus ul {
+                flex-direction: column;
+            }
+
+            .logo img, .footer-box img {
+                width: 160px;
+            }
+
+            .menu-btn {
+                display: flex;
+                color: var(--color-starlight-white);
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .close-btn {
+                display: none;
+                color: var(--color-starlight-white);
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+
+        /* ════════════════════════════════════
+           SECTION 1 — HERO / ABOUT BANNER
+        ════════════════════════════════════ */
+        .about-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-hero img.hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, color-mix(in srgb, var(--color-deep-space) 55%, transparent) 0%, color-mix(in srgb, var(--color-deep-space) 75%, transparent) 100%);
+            z-index: 1;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--color-starlight-white);
+            padding: 20px;
+            max-width: 850px;
+        }
+
+        .about-hero-content .eyebrow {
+            display: inline-block;
+            background: rgba(255, 152, 0, .13);
+            border: 1px solid rgba(255, 152, 0, .45);
+            border-radius: 20px;
+            padding: 2px 22px;
+            font-size: 12px;
+            font-family: "Space Grotesk", sans-serif;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-cosmic-violet);
+            margin-bottom: 24px;
+            color: var(--color-cosmic-violet);
+        }
+
+        .about-hero-content h1 {
+            font-family: "Chelsea Market", cursive;
+            line-height: 1.3;
+            color: var(--color-starlight-white);
+            margin-bottom: 24px;
+            font-size: clamp(35px, 5vw, 70px);
+        }
+
+        .about-hero-content h1 span {
+            color: var(--color-cosmic-violet);
+        }
+
+        .about-hero-content p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: color-mix(in srgb, var(--color-starlight-white) 80%, transparent);
+            max-width: 680px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 38px;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+            color: var(--color-deep-space);
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 152, 0, 0.45);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: color-mix(in srgb, var(--color-starlight-white) 35%, transparent);
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .scroll-hint i {
+            animation: bounce 1.8s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(7px)
+            }
+        }
+
+        /* ════════════════════════════════════
+           SECTION 2 — OUR STORY / MISSION
+        ════════════════════════════════════ */
+        .mission-section {
+            background: #040c14;
+            padding: 100px 60px;
+        }
+
+        .mission-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .mission-img-wrap {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .mission-img-wrap img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .mission-img-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 152, 0, 0.25);
+            pointer-events: none;
+        }
+
+        .mission-badge {
+            position: absolute;
+            bottom: 28px;
+            left: 28px;
+            background: color-mix(in srgb, var(--color-deep-space) 72%, transparent);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 152, 0, 0.4);
+            border-radius: 12px;
+            padding: 16px 22px;
+            color: var(--color-starlight-white);
+        }
+
+        .mission-badge span {
+            display: block;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--color-cosmic-violet);
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .mission-badge p {
+            font-size: 13px;
+            color: color-mix(in srgb, var(--color-starlight-white) 70%, transparent);
+            margin-top: 2px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-cosmic-violet);
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: "Chelsea Market", cursive;
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+            color: var(--color-starlight-white);
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+
+        .section-title span {
+            color: var(--color-cosmic-violet);
+        }
+
+        .section-body {
+            font-size: 17px;
+            line-height: 1.9;
+            color: color-mix(in srgb, var(--color-starlight-white) 70%, transparent);
+            margin-bottom: 20px;
+        }
+
+        .divider-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-cosmic-violet), transparent);
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 900px) {
+            .mission-section {
+                padding: 70px 24px;
+            }
+
+            .mission-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mission-img-wrap img {
+                height: 320px;
+            }
+        }
+
+        /* ════════════════════════════════════
+           SECTION 3 — STATS / NUMBERS
+        ════════════════════════════════════ */
+        .stats-section {
+            background: linear-gradient(135deg, color-mix(in srgb, var(--color-deep-space) 85%, transparent), rgba(5, 10, 25, 0.93)),
+                url('./src/home1.webp') center/cover no-repeat fixed;
+            padding: 90px 60px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: var(--color-midnight-blue);
+            border: 1px solid rgba(255, 152, 0, 0.2);
+            border-radius: 16px;
+            padding: 42px 24px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 152, 0, 0.55);
+        }
+
+        .stat-icon {
+            font-size: 36px;
+            color: var(--color-cosmic-violet);
+            margin-bottom: 16px;
+        }
+
+        .stat-num {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--color-starlight-white);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: color-mix(in srgb, var(--color-starlight-white) 55%, transparent);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 860px) {
+            .stats-section {
+                padding: 70px 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ════════════════════════════════════
+           SECTION 4 — TEAM
+        ════════════════════════════════════ */
+        .team-section {
+            background: #040c14;
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .section-head {
+            max-width: 650px;
+            margin: 0 auto 60px;
+        }
+
+       .team-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+}
+
+.team-card {
+    background: var(--color-midnight-blue);
+    border: 1px solid var(--color-nebula-purple);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 152, 0, 0.4);
+}
+
+.team-card-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+.team-card-body {
+    padding: 22px 20px 24px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+}
+
+.team-card-body h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--color-starlight-white);
+    margin-bottom: 5px;
+}
+
+.team-card-body .role {
+    font-size: 13px;
+    color: var(--color-cosmic-violet);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.team-card-body p {
+    font-size: 14px;
+    color: color-mix(in srgb, var(--color-starlight-white) 55%, transparent);
+    line-height: 1.7;
+}
+
+.team-card-body p:not(.role) {
+    min-height: 120px;
+    margin-bottom: 10px;
+}
+
+.team-socials {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.team-socials a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-midnight-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-starlight-white);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.team-socials a:hover {
+    background: var(--color-cosmic-violet);
+    color: var(--color-deep-space);
+}
+
+@media (max-width: 780px) {
+    .team-section {
+        padding: 70px 24px;
+    }
+
+    .team-card-body p:not(.role) {
+        min-height: auto;
+    }
+}
+
+        /* ════════════════════════════════════
+           SECTION 5 — TELESCOPE / GALLERY
+        ════════════════════════════════════ */
+        .gallery-section {
+            background: var(--color-deep-space);
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 220px;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item.tall img {
+            min-height: 460px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, color-mix(in srgb, var(--color-deep-space) 75%, transparent) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--color-starlight-white);
+            font-size: 15px;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 860px) {
+            .gallery-section {
+                padding: 70px 24px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ════════════════════════════════════
+           SECTION 6 — TESTIMONIALS
+        ════════════════════════════════════ */
+        .testimonial-section {
+            background: linear-gradient(135deg, #070f1c 0%, #0a0a0a 100%);
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .testimonial-card {
+            background: var(--color-midnight-blue);
+            border: 1px solid var(--color-nebula-purple);
+            border-radius: 18px;
+            padding: 36px 30px;
+            text-align: left;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+
+            /* Alignment Fix */
+            display: flex;
+            flex-direction: column;
+            height: 430px;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(255, 152, 0, 0.35);
+            transform: translateY(-5px);
+        }
+
+        .quote-mark {
+            font-size: 56px;
+            color: rgba(255, 152, 0, 0.25);
+            font-family: "Chelsea Market", cursive;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .star-row {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 16px;
+        }
+
+        .star-row i {
+            color: var(--color-cosmic-violet);
+            font-size: 14px;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: color-mix(in srgb, var(--color-starlight-white) 72%, transparent);
+            margin-bottom: 28px;
+
+            /* Makes all cards equal */
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            /* Push author section to bottom */
+            margin-top: auto;
+        }
+
+        .testimonial-author img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 2px solid var(--color-cosmic-violet);
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-starlight-white);
+            margin: 0 0 4px;
+        }
+
+        .author-info span {
+            font-size: 13px;
+            color: var(--color-cosmic-violet);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 780px) {
+            .testimonial-section {
+                padding: 70px 24px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                height: auto;
+                min-height: 400px;
+            }
+        }
+
+
+
+        /* Footer */
+
+        .footer {
+            width: 100%;
+            background: linear-gradient(125deg, color-mix(in srgb, var(--color-deep-space) 66.4%, transparent), color-mix(in srgb, var(--color-deep-space) 80.1%, transparent)), url(./src/footer-bg.webp);
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            color: var(--color-starlight-white);
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 50px;
+            gap: 40px;
+        }
+
+        .footer-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-box img {
+            width: 190px;
+        }
+
+        .footer-box h2 {
+            font-size: 30px;
+        }
+
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+
+        .footer-link a {
+            color: var(--color-starlight-white);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-link a:hover {
+            color: var(--color-cosmic-violet);
+        }
+
+
+
+        .footer-box:first-child p {
+            max-width: 300px;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .footer-box:last-child p {
+            font-size: 16px;
+        }
+
+        .login-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: color-mix(in srgb, var(--color-midnight-blue) 30.8%, transparent);
+            backdrop-filter: blur(10px);
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: 0.5s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--color-cosmic-violet);
+            color: var(--color-deep-space);
+            transform: translateY(-4px);
+        }
+
+        .footer-email {
+            background: transparent;
+            border: 1px solid color-mix(in srgb, var(--color-cosmic-violet) 30%, transparent);
+            font-size: 14px;
+            padding: 15px 20px;
+            width: 100%;
+            border-radius: 10px;
+            color: var(--color-starlight-white);
+        }
+
+        .footer-btn {
+            font-size: 14px;
+            padding: 15px 20px;
+            width: 100%;
+            border: none;
+            font-weight: bold;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-cosmic-violet), var(--color-cosmic-violet));
+        }
+
+        .footer-btn:hover {
+            box-shadow: 0 7px 30px color-mix(in srgb, var(--color-cosmic-violet) 40%, transparent);
+            filter: brightness(1.08);
+        }
+
+
+        .footer-footer {
+            display: flex;
+            justify-content: space-around;
+            padding-block: 40px;
+            color: color-mix(in srgb, var(--color-starlight-white) 52.7%, transparent);
+            ;
+        }
+
+        .footer-footer p {
+            font-size: 15px;
+        }
+
+        .policy a {
+            color: color-mix(in srgb, var(--color-starlight-white) 52.7%, transparent);
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 40px;
+        }
+
+        .policy a:hover {
+            color: var(--color-cosmic-violet);
+        }
+
+        .footer-line {
+            margin-inline: 30px;
+            opacity: 0.5;
+        }
+
+         .contact a{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+         }
+        .contact span{
+            font-size: 15px;
+        }
+
+        @media (max-width:550px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                justify-content: center;
+            }
+
+            .footer-box:first-child p {
+                text-align: center;
+            }
+
+            .footer-box {
+                align-items: center;
+            }
+
+        }
+
+        @media (max-width:650px) {
+            .footer-footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .policy {
+                justify-content: space-around;
+            }
+
+            .policy a {
+                margin-inline: 15px;
+                font-size: 13px;
+            }
+
+            .footer-footer p {
+                font-size: 13px;
+            }
+
+            .footer-link a {
+                font-size: 13px;
+            }
+
+            .footer-box h2 {
+                font-size: 23px;
+            }
+
+            .footer-box:first-child p {
+                font-size: 13px;
+                line-height: 1.9;
+            }
+
+            .footer-box:last-child p {
+                font-size: 13px;
+                text-align: center;
+            }
+
+            .footer-email {
+                font-size: 12px;
+            }
+
+            .footer-btn {
+                font-size: 12px;
+            }
+
+            .footer-box img {
+                width: 150px;
+            }
+
+              .contact span{
+            font-size: 13px;
+        }
+
+        }
+
+        /* ── SCROLL REVEAL ANIMATION ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── HEADER ── -->
+    <section class="header">
+        <div class="logo">
+              <a href="index.html"><img src="./src/logo (4) (1).webp" alt="company Logo"></a>
+        </div>
+
+        <nav class="menus">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="pages.html">Service</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="login.html"><button class="nav-btn">Login</button></a> 
+        </nav>
+
+        <div class="menu-btn">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+        <div class="close-btn">
+            <span class="material-symbols-outlined">close</span>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 1 — HERO BANNER
+    ════════════════════════════════════ -->
+    <section class="about-hero">
+        <img class="hero-bg" src="./src/about-bg.webp"
+            alt="Deep Space Hero">
+        <div class="hero-overlay"></div>
+        <div class="about-hero-content">
+            <p class="eyebrow">Who We Are</p>
+            <h1>Exploring the <span>Infinite</span><br>Universe</h1>
+            <p>We are a team of astronomers, engineers, and visionaries dedicated to unlocking the mysteries of the
+                cosmos — from our nearest planetary neighbors to the farthest galaxies ever observed.</p>
+            <a href="404.html" class="hero-cta">Discover Our Story</a>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 2 — MISSION / STORY
+    ════════════════════════════════════ -->
+    <section class="mission-section" id="mission">
+        <div class="mission-inner">
+            <div class="mission-img-wrap reveal">
+                <img src="./src/misson.webp"
+                    alt="Telescope at night">
+                <div class="mission-badge">
+                    <span>25+</span>
+                    <p>Years of Cosmic Research</p>
+                </div>
+            </div>
+            <div class="mission-text reveal reveal-delay-1">
+                <p class="section-label">Our Mission</p>
+                <h2 class="section-title">Driven by Curiosity,<br>Guided by <span>Science</span></h2>
+                <div class="divider-line"></div>
+                <p class="section-body">Founded in 2000, our institute has been at the forefront of deep-sky observation
+                    and planetary science. We operate six world-class telescopes across three continents, giving us an
+                    unbroken view of the sky around the clock.</p>
+                <p class="section-body">Our mission is simple: push the boundaries of human knowledge by studying
+                    everything from exoplanet atmospheres to var(--color-deep-space) hole dynamics — and share those discoveries with the
+                    world.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 3 — STATS
+    ════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-icon"><i class="fa-solid fa-satellite"></i></div>
+                <div class="stat-num">120+</div>
+                <div class="stat-label">Missions Launched</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-1">
+                <div class="stat-icon"><i class="fa-solid fa-meteor"></i></div>
+                <div class="stat-num">4,300</div>
+                <div class="stat-label">Exoplanets Catalogued</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-2">
+                <div class="stat-icon"><i class="fa-solid fa-telescope"
+                        style="font-family:'Font Awesome 6 Free'; font-weight:900"></i><i
+                        class="fa-solid fa-binoculars"></i></div>
+                <div class="stat-num">6</div>
+                <div class="stat-label">Global Observatories</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-3">
+                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-num">850K</div>
+                <div class="stat-label">Community Members</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 4 — TEAM
+    ════════════════════════════════════ -->
+    <section class="team-section">
+        <div class="section-head reveal">
+            <p class="section-label">The Minds Behind the Mission</p>
+            <h2 class="section-title">Meet Our <span>Expert</span> Team</h2>
+            <p class="section-body">World-class scientists and engineers united by a single obsession — understanding
+                the universe.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <img class="team-card-img" src="./src/person1.webp"
+                    alt="Dr. Marcus Chen">
+                <div class="team-card-body">
+                    <h3>Dr. Marcus Chen</h3>
+                    <p class="role">Chief Astrophysicist</p>
+                    <p>Leads our black-hole research division with 18 years of observational expertise from NASA and
+                        ESO.</p>
+                    <div class="team-socials">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card reveal reveal-delay-1">
+                <img class="team-card-img" src="./src/person2.webp"
+                    alt="Dr. Priya Nair">
+                <div class="team-card-body">
+                    <h3>Dr. Priya Nair</h3>
+                    <p class="role">Exoplanet Researcher</p>
+                    <p>Discovered two potentially habitable exoplanets using our transit photometry pipeline built
+                        in-house.</p>
+                    <div class="team-socials">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card reveal reveal-delay-2">
+                <img class="team-card-img" src="./src/person3.webp"
+                    alt="Arjun Mehta">
+                <div class="team-card-body">
+                    <h3>Arjun Mehta</h3>
+                    <p class="role">Space Systems Engineer</p>
+                    <p>Designed the thermal control systems deployed aboard our CubeSat constellation orbiting at 600
+                        km.</p>
+                    <div class="team-socials">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card reveal reveal-delay-3">
+                <img class="team-card-img" src="./src/person4.webp"
+                    alt="Dr. Sofia Reyes">
+                <div class="team-card-body">
+                    <h3>Dr. Sofia Reyes</h3>
+                    <p class="role">Cosmology Lead</p>
+                    <p>Studies the large-scale structure of the universe; her CMB analysis work has been cited 3,000+
+                        times.</p>
+                    <div class="team-socials">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 5 — GALLERY
+    ════════════════════════════════════ -->
+    <section class="gallery-section">
+        <div class="section-head reveal" style="margin-bottom:50px">
+            <p class="section-label">Through Our Lenses</p>
+            <h2 class="section-title">A Window into the <span>Cosmos</span></h2>
+            <p class="section-body">Every image captured by our telescopes is a moment frozen in cosmic time — light
+                that has travelled millions of years to reach us.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item tall reveal">
+                <img src="./src/abt-img1.webp" alt="Nebula">
+                <div class="gallery-overlay"><span>Eagle Nebula</span></div>
+            </div>
+            <div class="gallery-item reveal reveal-delay-1">
+                <img src="./src/abt-img2.webp"
+                    alt="Earth from Space">
+                <div class="gallery-overlay"><span>Earth From Orbit</span></div>
+            </div>
+            <div class="gallery-item reveal reveal-delay-2">
+                <img src="./src/abt-img3.webp" alt="Milky Way">
+                <div class="gallery-overlay"><span>Milky Way Core</span></div>
+            </div>
+            <div class="gallery-item reveal reveal-delay-1">
+                <img src="./src/abt-img4.webp" alt="Moon Surface">
+                <div class="gallery-overlay"><span>Lunar Surface</span></div>
+            </div>
+            <div class="gallery-item reveal reveal-delay-2">
+                <img src="./src/abt-img5.webp" alt="Saturn">
+                <div class="gallery-overlay"><span>Saturn's Rings</span></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         SECTION 6 — TESTIMONIALS  (bonus)
+    ════════════════════════════════════ -->
+    <section class="testimonial-section">
+        <div class="section-head reveal" style="margin-bottom:50px">
+            <p class="section-label">Voices From the Community</p>
+            <h2 class="section-title">What Our <span>Members</span> Say</h2>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal">
+                <span class="quote-mark">"</span>
+                <div class="star-row">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>Joining this community changed how I see the night sky. The live observation sessions with actual
+                    astronomers are unlike anything I have experienced before.</p>
+                <div class="testimonial-author">
+                    <img src="./src/person4.webp" alt="Ravi K">
+                    <div class="author-info">
+                        <h4>Ravi Krishnamurthy</h4>
+                        <span>Amateur Astronomer, Chennai</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-1">
+                <span class="quote-mark">"</span>
+                <div class="star-row">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>The research access and mentorship programme opened doors I never imagined. I published my first
+                    paper on asteroid spectroscopy within a year of joining.</p>
+                <div class="testimonial-author">
+                    <img src="./src/person7.webp" alt="Emily J">
+                    <div class="author-info">
+                        <h4>Emily Johansson</h4>
+                        <span>Graduate Researcher, Stockholm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-2">
+                <span class="quote-mark">"</span>
+                <div class="star-row">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p>The image archive alone is worth the membership. High-resolution telescope feeds updated in real time
+                    — I use them every week for my university lectures.</p>
+                <div class="testimonial-author">
+                    <img src="./src/person6.webp"
+                        alt="Prof. James">
+                    <div class="author-info">
+                        <h4>Prof. James Okafor</h4>
+                        <span>Physics Lecturer, Lagos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── FOOTER ── -->
+    <section class="footer">
+        <div class="footer-main">
+            <div class="footer-box">
+                <a href="index.html"><img src="./src/logo (4) (1).webp" alt="company  errorpage"></a>
+                <p>We Explore the universe with advanced technology, driving innovation and discovery to benefit all
+                    humanity.</p>
+                <div class="login-socials">
+                    <div class="social-icon errorpage"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-x-twitter"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="social-icon errorpage"><i class="fa-brands fa-youtube"></i></div>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Company</h2>
+                <div class="footer-link">
+                    <a href="about.html">About</a>
+                    <a href="pages.html">Service</a>
+                    <a href="events.html">Event</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Address</h2>
+                <div class="footer-link contact">
+                    <a href="404.html"><span class="material-symbols-outlined">
+                            mail
+                        </span>space@gmail.com</a>
+                    <a href="404.html"><span class="material-symbols-outlined">
+location_on
+</span>Chennai, India</a>
+                    <a href="404.html"><span class="material-symbols-outlined">
+call
+</span>+91 1234567890</a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h2>Newsletter</h2>
+                <div class="footer-link">
+                    <p>Stay Informed with Stackly</p>
+                    <input type="email" class="footer-email" placeholder="Please Subscribe">
+                    <button class="footer-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-line">
+
+        <div class="footer-footer">
+            <p>@ 2026 Your Stackly. All Rights Reserved</p>
+            <div class="policy">
+                <a href="404.html">Privacy Policy</a>
+                <a href="404.html">Terms of Use</a>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        /* ── Hamburger Menu ── */
+        const menubtn = document.querySelector(".menu-btn");
+        const menus = document.querySelector(".menus");
+        const closebtn = document.querySelector(".close-btn");
+
+        menubtn.addEventListener("click", () => {
+            menubtn.style.display = "none";
+            closebtn.style.display = "block";
+            menus.style.display = "flex";
+        });
+
+        closebtn.addEventListener("click", () => {
+            menubtn.style.display = "block";
+            closebtn.style.display = "none";
+            menus.style.display = "none";
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 780) {
+                menubtn.style.display = "none";
+                closebtn.style.display = "none";
+                menus.style.display = "flex";
+            } else {
+                menubtn.style.display = "block";
+                closebtn.style.display = "none";
+                menus.style.display = "none";
+            }
+        });
+
+        /* ── Navbar Scroll ── */
+        const navbar = document.querySelector(".header");
+        window.addEventListener("scroll", () => {
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        /* ── Scroll Reveal ── */
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        reveals.forEach(el => observer.observe(el));
+
+
+        //footer validation
+
+        const footerEmail = document.querySelector(".footer-email");
+        const footerBtn = document.querySelector(".footer-btn");
+
+        footerBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const email = footerEmail.value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === "") {
+                alert("Please enter your email address");
+                footerEmail.focus();
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                footerEmail.focus();
+                return;
+            }
+
+            alert("Subscription successful!");
+            footerEmail.value = "";
+        });
+
+        //error page
+
+        document.querySelectorAll(".errorpage").forEach(element => {
+
+    element.style.cursor = "pointer";
+
+    element.addEventListener("click", () => {
+        window.location.href = "404.html";
+    });
+
+});
+    </script>
+</body>
+
+</html>
