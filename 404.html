@@ -158,6 +158,8 @@ p{
 .secondary:hover{
     background:#ffb62d;
     color:var(--color-deep-space);
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(255,182,45,.4);
 }
 
 .planet{
@@ -231,7 +233,7 @@ p{
         width:100%;
         text-align:center;
     
-}
+}}
 </style>
 </head>
 <body>
@@ -256,12 +258,23 @@ p{
         </p>
 
         <div class="buttons">
-            <a href="index.html" class="btn primary">Back to Home</a>
-            <a href="javascript:history.back()" class="btn secondary">Back to Previous Section</a>
+            <a href="index.html" class="btn primary"><i class="fa-solid fa-house" style="margin-right: 8px;"></i>Back to Home</a>
+            <a href="#" onclick="goBack(); return false;" class="btn secondary"><i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i>Go Back</a>
         </div>
     </div>
 
 </div>
 
+<script>
+function goBack() {
+    const referrer = document.referrer;
+    if (referrer && !referrer.includes('404.html')) {
+        const cleanReferrer = referrer.split('#')[0];
+        window.location.href = cleanReferrer;
+    } else {
+        window.location.href = 'index.html';
+    }
+}
+</script>
 </body>
 </html>
